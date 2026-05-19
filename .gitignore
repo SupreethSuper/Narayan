@@ -1,0 +1,28 @@
+#do not add sim files
+*.vcd
+transcript
+*.wlf
+
+
+#do not add any ini files
+*.ini
+
+#do not any qpf files
+*.rpt
+*.qsf
+
+#do not add any backup file
+*.bak
+
+
+#do not add any other files to repo
+_info
+*.qdb
+*.qpg
+*.qtl
+_vmake
+project\db\*
+project\output_files\*
+project\simulation\*
+project\incremental_db\*
+project/db/narayan.quiproj.55152.rdr.flock

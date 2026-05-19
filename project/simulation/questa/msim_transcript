@@ -1,0 +1,40 @@
+# Reading pref.tcl
+# ERROR: No extended dataflow license exists
+# do narayan_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
+# vmap work rtl_work 
+# Copying C:/intelFPGA/20.1/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -sv -work work +incdir+C:/Users/supre/Downloads/Narayan/project {C:/Users/supre/Downloads/Narayan/project/scratchpad.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:49:13 on May 18,2026
+# vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/supre/Downloads/Narayan/project" C:/Users/supre/Downloads/Narayan/project/scratchpad.sv 
+# -- Compiling package scratchpad_sv_unit
+# -- Compiling module scratchpad
+# ** Error: C:/Users/supre/Downloads/Narayan/project/scratchpad.sv(19): (vlog-2110) Illegal reference to net "data_out".
+# ** Error: C:/Users/supre/Downloads/Narayan/project/scratchpad.sv(21): (vlog-2110) Illegal reference to net "data_out".
+# End time: 20:49:13 on May 18,2026, Elapsed time: 0:00:00
+# Errors: 2, Warnings: 0
+# ** Error: C:/intelFPGA/20.1/modelsim_ase/win32aloem/vlog failed.
+# Error in macro ./narayan_run_msim_rtl_verilog.do line 8
+# C:/intelFPGA/20.1/modelsim_ase/win32aloem/vlog failed.
+#     while executing
+# "vlog -sv -work work +incdir+C:/Users/supre/Downloads/Narayan/project {C:/Users/supre/Downloads/Narayan/project/scratchpad.sv}"
+vsim -gui -l msim_transcript work.scratchpad_sv_unit
+# vsim -gui -l msim_transcript work.scratchpad_sv_unit 
+# Start time: 20:49:54 on May 18,2026
+# Loading sv_std.std
+# Loading work.scratchpad_sv_unit
+# ** Fatal: (SIGFPE) Floating point exception.
+#    Time: 0 ps  Iteration: 0  Unknown: <UNKNOWN> File: UNKNOWN
+# FATAL ERROR while loading design
+# Error loading design
+# End time: 20:49:54 on May 18,2026, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+# Break key hit
