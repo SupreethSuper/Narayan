@@ -2,30 +2,28 @@
 
 module scratchpad_tb;
 
-    // Parameters
     localparam DATA_WIDTH = NAR_NUM_BITS;
-    localparam ROWS = NAR_MAT_ROWS;
-    localparam COLS = NAR_MAT_COLS;
-    
-    // Clock period (10ns = 100MHz)
     localparam CLK_PERIOD = 10;
 
-    // Testbench signals
-    reg clk;
-    reg rst;
-    reg [DATA_WIDTH-1:0] data_in;
-    wire [DATA_WIDTH-1:0] data_out;
+    logic clk;
+    logic rst;
+    logic [DATA_WIDTH-1:0] red, green, blue;
+    logic [DATA_WIDTH-1:0] red_out, green_out, blue_out;
 
-    // Instantiate the DUT (Device Under Test)
+    // Instantiate DUT
     scratchpad #(
         .DATA_WIDTH(DATA_WIDTH),
-        .ROWS(ROWS),
-        .COLS(COLS)
+        .ROWS(NAR_MAT_ROWS),
+        .COLS(NAR_MAT_COLS)
     ) dut (
         .clk(clk),
         .rst(rst),
-        .data_in(data_in),
-        .data_out(data_out)
+        .red(red),
+        .green(green),
+        .blue(blue),
+        .red_out(red_out),
+        .green_out(green_out),
+        .blue_out(blue_out)
     );
 
     // Clock generation
@@ -36,58 +34,49 @@ module scratchpad_tb;
 
     // Test stimulus
     initial begin
-        $display("=== Scratchpad Testbench Started ===");
-        $display("DATA_WIDTH = %d", DATA_WIDTH);
-        $display("ROWS = %d, COLS = %d", ROWS, COLS);
+        $display("=== RGB Scratchpad Test ===");
         
         // Initialize
         rst = 0;
-        data_in = 0;
+        red = 0;
+        green = 0;
+        blue = 0;
         #10;
         
         // Release reset
         rst = 1;
         #10;
         
-        // Test 1: Write and read simple value
-        $display("\n--- Test 1: Simple Data Pass ---");
-        data_in = 32'hDEADBEEF;
+        // Test 1: Write data
+        $display("Test 1: Input R=0xAA, G=0xBB, B=0xCC");
+        red = 32'hAA;
+        green = 32'hBB;
+        blue = 32'hCC;
         #10;
-        $display("Input: 0x%h, Output: 0x%h", data_in, data_out);
+        $display("Output: R=0x%h, G=0x%h, B=0x%h (delayed by 1 cycle)", red_out, green_out, blue_out);
         
-        // Test 2: Write another value
-        $display("\n--- Test 2: Sequential Data ---");
-        data_in = 32'hCAFEBABE;
+        // Test 2: Check data appears after clock
         #10;
-        $display("Input: 0x%h, Output: 0x%h", data_in, data_out);
+        $display("Test 2: After clock, R=0x%h, G=0x%h, B=0x%h", red_out, green_out, blue_out);
         
-        // Test 3: Write incrementing values
-        $display("\n--- Test 3: Incrementing Values ---");
-        for(int i = 0; i < 5; i++) begin
-            data_in = data_in + 1;
-            #10;
-            $display("Cycle %d - Input: 0x%h, Output: 0x%h", i, data_in, data_out);
-        end
-        
-        // Test 4: Reset during operation
-        $display("\n--- Test 4: Reset Test ---");
-        data_in = 32'hFFFFFFFF;
+        // Test 3: Change inputs
+        red = 32'hDD;
+        green = 32'hEE;
+        blue = 32'hFF;
         #10;
-        $display("Before Reset - Input: 0x%h, Output: 0x%h", data_in, data_out);
+        $display("Test 3: After new input, R=0x%h, G=0x%h, B=0x%h", red_out, green_out, blue_out);
         
-        rst = 0;  // Assert reset
+        // Test 4: Reset test
         #10;
-        $display("After Reset - Output should be 0: 0x%h", data_out);
-        
-        rst = 1;  // Release reset
+        rst = 0;
         #10;
+        $display("Test 4: After reset, R=0x%h, G=0x%h, B=0x%h (should be 0)", red_out, green_out, blue_out);
         
-        // Finish simulation
-        $display("\n=== Testbench Completed ===");
+        $display("=== Test Complete ===");
         $finish;
     end
 
-    // Optional: Waveform dumping for viewing in GTKWave or ModelSim
+    // Dump waveforms
     initial begin
         $dumpfile("scratchpad_tb.vcd");
         $dumpvars(0, scratchpad_tb);
