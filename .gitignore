@@ -32,3 +32,8 @@ C:/Users/supre/Downloads/Narayan/project/db/*
 C:/Users/supre/Downloads/Narayan/project/output_files/*
 C:/Users/supre/Downloads/Narayan/project/simulation/*
 C:/Users/supre/Downloads/Narayan/project/incremental_db/*
+
+#do not upload any editable docs
+*.docx
+*.doc
+*.docs
