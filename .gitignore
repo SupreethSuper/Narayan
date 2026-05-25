@@ -37,3 +37,6 @@ C:/Users/supre/Downloads/Narayan/project/incremental_db/*
 *.docx
 *.doc
 *.docs
+
+#also not to upload any temp files
+*.tmp
