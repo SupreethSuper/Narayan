@@ -1,13 +1,13 @@
-Fitter Status : Successful - Mon May 18 21:41:44 2026
+Fitter Status : Successful - Wed May 27 01:03:18 2026
 Quartus Prime Version : 25.1std.0 Build 1129 10/21/2025 SC Lite Edition
 Revision Name : narayan
 Top-level Entity Name : scratchpad
 Family : Cyclone V
 Device : 5CGXFC9E7F35C8
 Timing Models : Final
-Logic utilization (in ALMs) : 25 / 113,560 ( < 1 % )
-Total registers : 96
-Total pins : 194 / 616 ( 31 % )
+Logic utilization (in ALMs) : 99 / 113,560 ( < 1 % )
+Total registers : 388
+Total pins : 482 / 616 ( 78 % )
 Total virtual pins : 0
 Total block memory bits : 0 / 12,492,800 ( 0 % )
 Total RAM Blocks : 0 / 1,220 ( 0 % )

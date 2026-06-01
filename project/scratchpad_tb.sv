@@ -1,4 +1,4 @@
-`include "nar_params.vh"
+// `include "nar_params.vh"
 
 module scratchpad_tb;
 

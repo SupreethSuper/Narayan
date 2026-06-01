@@ -1,8 +1,10 @@
 `ifndef NAR_DEFINES
 `define NAR_DEFINES
 
-`define NAR_NUM_BITS_DEF           32
-`define NAR_MAT_ROWS_DEF         500
-`define NAR_MAT_COLS_DEF           500
+`define NAR_NUM_BITS_DEF             32
+`define NAR_MAT_ROWS_DEF             2
+`define NAR_MAT_COLS_DEF             2
+`define NAR_MAX_INPUT_SCOOP_DEF      1
+`define NAR_PIXEL_INDEX_MAX_DEF      2
 
 `endif
