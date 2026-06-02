@@ -17,7 +17,7 @@ vlog -sv tb_buffer.sv
 vsim work.tb_buffer
 
 # Add all waves
-add wave -r *
+#add wave -r *
 
 # Run simulation
 run -all
