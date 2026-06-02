@@ -39,6 +39,8 @@ module scratchpad #(
     // INTERNAL PIXEL COUNTER (auto-increments, wraps around when full)
     logic [PIXEL_ADDR_WIDTH-1:0] pixel_counter;
 
+    logic valid;
+
     //================================================================================
     // COMBINATIONAL: FLATTEN 2D STORAGE ARRAYS TO FLAT OUTPUT VECTORS
     //================================================================================
@@ -70,14 +72,19 @@ module scratchpad #(
     begin
         if(~rst)
         begin
-            // Reset all storage to zeros
-            pixel_counter <= '{default:0};
-            red_pad       <= '{default:0};
-            green_pad     <= '{default:0};
-            blue_pad      <= '{default:0};
+            // Reset: Only reset essential control signals (low fanout)
+            // Avoid resetting 2D arrays - they consume huge reset fanout
+            pixel_counter <= '0;
+            valid         <= 1'b0;
+
+            // Note: red_pad, green_pad, blue_pad are NOT reset here
+            // They retain previous values, but valid flag indicates invalid state
         end
         else
         begin
+            // Mark outputs as valid after reset is released
+            valid <= 1'b1;
+
             // Unroll MAX_INPUT_SCOOP parallel pixel stores (synthesizer will unroll this)
             for (int scoop_idx = 0; scoop_idx < MAX_INPUT_SCOOP; scoop_idx++)
             begin
