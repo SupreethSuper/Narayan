@@ -86,30 +86,29 @@ module scratchpad #(
             valid <= 1'b1;
 
             // Unroll MAX_INPUT_SCOOP parallel pixel stores (synthesizer will unroll this)
-            generate
-                for (genvar scoop_idx = 0; scoop_idx < MAX_INPUT_SCOOP; scoop_idx++)
+            for (int scoop_idx = 0; scoop_idx < MAX_INPUT_SCOOP; scoop_idx++)
+            begin
+                automatic logic [PIXEL_ADDR_WIDTH-1:0] stored_index;
+                automatic int stored_row;
+                automatic int stored_col;
+
+                // Calculate linear index for this pixel
+                stored_index = pixel_counter + scoop_idx;
+
+                // Convert linear index to 2D coordinates
+                stored_row = (stored_index < TOTAL_PIXELS) ? (stored_index / COLS) : 0;
+                stored_col = (stored_index < TOTAL_PIXELS) ? (stored_index % COLS) : 0;
+
+                // Extract this lane's pixel data from flattened inputs
+                // For lane scoop_idx: bits [scoop_idx*DATA_WIDTH +: DATA_WIDTH]
+                if (stored_index < TOTAL_PIXELS)
                 begin
-                    automatic logic [PIXEL_ADDR_WIDTH-1:0] stored_index;
-                    automatic int stored_row;
-                    automatic int stored_col;
-
-                    // Calculate linear index for this pixel
-                    stored_index = pixel_counter + scoop_idx;
-
-                    // Convert linear index to 2D coordinates
-                    stored_row = (stored_index < TOTAL_PIXELS) ? (stored_index / COLS) : 0;
-                    stored_col = (stored_index < TOTAL_PIXELS) ? (stored_index % COLS) : 0;
-
-                    // Extract this lane's pixel data from flattened inputs
-                    // For lane scoop_idx: bits [scoop_idx*DATA_WIDTH +: DATA_WIDTH]
-                    if (stored_index < TOTAL_PIXELS)
-                    begin
-                        red_pad[stored_row][stored_col]   <= red[(scoop_idx+1)*DATA_WIDTH-1 -: DATA_WIDTH];
-                        green_pad[stored_row][stored_col] <= green[(scoop_idx+1)*DATA_WIDTH-1 -: DATA_WIDTH];
-                        blue_pad[stored_row][stored_col]  <= blue[(scoop_idx+1)*DATA_WIDTH-1 -: DATA_WIDTH];
-                    end
+                    red_pad[stored_row][stored_col]   <= red[(scoop_idx+1)*DATA_WIDTH-1 -: DATA_WIDTH];
+                    green_pad[stored_row][stored_col] <= green[(scoop_idx+1)*DATA_WIDTH-1 -: DATA_WIDTH];
+                    blue_pad[stored_row][stored_col]  <= blue[(scoop_idx+1)*DATA_WIDTH-1 -: DATA_WIDTH];
                 end
-            endgenerate
+            end
+        end
 
             // Auto-increment pixel counter for next cycle
             if (pixel_counter + MAX_INPUT_SCOOP < TOTAL_PIXELS)
@@ -117,6 +116,6 @@ module scratchpad #(
             else
                 pixel_counter <= '0;  // Wrap around when complete
         end
-    end
+    
 
 endmodule
