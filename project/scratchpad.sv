@@ -9,6 +9,7 @@ module scratchpad #(
 (
     input logic  clk,
     input logic  rst,
+    input logic  rw_,       // 0 = Write, 1 = Read
 
     // Flattened parallel input interface (multiple pixels per cycle)
     input logic  [DATA_WIDTH*MAX_INPUT_SCOOP-1:0] red  ,
@@ -29,51 +30,49 @@ module scratchpad #(
     localparam PIXEL_ADDR_WIDTH = $clog2(TOTAL_PIXELS);
 
     //================================================================================
-    // INTERNAL STORAGE (2D arrays - later flattened to outputs)
+    // INTERNAL STORAGE: RAM-BASED (Linear memory arrays)
     //================================================================================
 
-    logic [DATA_WIDTH-1:0] red_pad   [0:ROWS-1][0:COLS-1];
-    logic [DATA_WIDTH-1:0] green_pad [0:ROWS-1][0:COLS-1];
-    logic [DATA_WIDTH-1:0] blue_pad  [0:ROWS-1][0:COLS-1];
+    // Three separate RAMs for RGB channels (one address, parallel write/read)
+    logic [DATA_WIDTH-1:0] red_ram   [0:TOTAL_PIXELS-1];
+    logic [DATA_WIDTH-1:0] green_ram [0:TOTAL_PIXELS-1];
+    logic [DATA_WIDTH-1:0] blue_ram  [0:TOTAL_PIXELS-1];
 
-    // INTERNAL PIXEL COUNTER (auto-increments, wraps around when full)
+    // INTERNAL PIXEL COUNTER (auto-increments during write, wraps when full)
     logic [PIXEL_ADDR_WIDTH-1:0] pixel_counter;
 
     // VALIDITY FLAG (indicates when outputs are ready)
     logic valid;
 
     //================================================================================
-    // COMBINATIONAL: FLATTEN 2D STORAGE ARRAYS TO FLAT OUTPUT VECTORS
+    // COMBINATIONAL: READ ALL RAM CONTENTS TO FLAT OUTPUT VECTORS
     //================================================================================
-    // Generate blocks unroll all 2D → 1D mappings at synthesis time
+    // Generate blocks unroll all RAM reads at synthesis time
+    // Each pixel in RAM is mapped to its position in the flat output vector
     //================================================================================
 
     generate
-        for (genvar row = 0; row < ROWS; row++) begin : output_row_gen
-            for (genvar col = 0; col < COLS; col++) begin : output_col_gen
-                assign red_out[(row*COLS+col+1)*DATA_WIDTH-1 -: DATA_WIDTH]   = red_pad[row][col];
-                assign green_out[(row*COLS+col+1)*DATA_WIDTH-1 -: DATA_WIDTH] = green_pad[row][col];
-                assign blue_out[(row*COLS+col+1)*DATA_WIDTH-1 -: DATA_WIDTH]  = blue_pad[row][col];
-            end
+        for (genvar idx = 0; idx < TOTAL_PIXELS; idx++) begin : output_gen
+            assign red_out[(idx+1)*DATA_WIDTH-1 -: DATA_WIDTH]   = red_ram[idx];
+            assign green_out[(idx+1)*DATA_WIDTH-1 -: DATA_WIDTH] = green_ram[idx];
+            assign blue_out[(idx+1)*DATA_WIDTH-1 -: DATA_WIDTH]  = blue_ram[idx];
         end
     endgenerate
 
     //================================================================================
-    // SEQUENTIAL: PIXEL STORAGE WITH AUTO-INCREMENT COUNTER
+    // SEQUENTIAL: RAM WRITE WITH AUTO-INCREMENT COUNTER
     //================================================================================
-    // Unroll MAX_INPUT_SCOOP parallel pixel stores (synthesizer unrolls the loop)
-    // Each cycle processes one batch of MAX_INPUT_SCOOP pixels in parallel
+    // Store MAX_INPUT_SCOOP pixels per cycle into RAM at consecutive addresses
+    // Counter auto-increments after each write, wraps around when full
     //================================================================================
 
-    logic [PIXEL_ADDR_WIDTH-1:0] stored_index;
-    logic signed [31:0] stored_row;
-    logic signed [31:0] stored_col;
+    logic [PIXEL_ADDR_WIDTH-1:0] write_addr;
 
     always_ff @(posedge clk or negedge rst)
     begin
         if(~rst)
         begin
-            // Reset: Only reset essential control signals (low fanout)
+            // Reset: Only reset control signals (low fanout)
             pixel_counter <= '0;
             valid         <= 1'b0;
         end
@@ -82,30 +81,29 @@ module scratchpad #(
             // Mark outputs as valid after reset is released
             valid <= 1'b1;
 
-            // Unroll: MAX_INPUT_SCOOP parallel pixel stores
-            for (int scoop_idx = 0; scoop_idx < MAX_INPUT_SCOOP; scoop_idx++)
+            // Write mode: Store MAX_INPUT_SCOOP pixels from inputs
+            if (~rw_)
             begin
-                // Calculate linear index for this pixel
-                stored_index = pixel_counter + scoop_idx;
-
-                // Convert linear index to 2D coordinates
-                stored_row = (stored_index < TOTAL_PIXELS) ? (stored_index / COLS) : 0;
-                stored_col = (stored_index < TOTAL_PIXELS) ? (stored_index % COLS) : 0;
-
-                // Store pixel only if within bounds
-                if (stored_index < TOTAL_PIXELS)
+                // Write: Unroll parallel pixel writes to RAM
+                for (int scoop_idx = 0; scoop_idx < MAX_INPUT_SCOOP; scoop_idx++)
                 begin
-                    red_pad[stored_row][stored_col]   <= red[(scoop_idx+1)*DATA_WIDTH-1 -: DATA_WIDTH];
-                    green_pad[stored_row][stored_col] <= green[(scoop_idx+1)*DATA_WIDTH-1 -: DATA_WIDTH];
-                    blue_pad[stored_row][stored_col]  <= blue[(scoop_idx+1)*DATA_WIDTH-1 -: DATA_WIDTH];
-                end
-            end
+                    write_addr = pixel_counter + scoop_idx;
 
-            // Auto-increment pixel counter for next cycle
-            if (pixel_counter + MAX_INPUT_SCOOP < TOTAL_PIXELS)
-                pixel_counter <= pixel_counter + MAX_INPUT_SCOOP;
-            else
-                pixel_counter <= '0;  // Wrap around when complete
+                    // Store pixel only if within bounds
+                    if (write_addr < TOTAL_PIXELS)
+                    begin
+                        red_ram[write_addr]   <= red[(scoop_idx+1)*DATA_WIDTH-1 -: DATA_WIDTH];
+                        green_ram[write_addr] <= green[(scoop_idx+1)*DATA_WIDTH-1 -: DATA_WIDTH];
+                        blue_ram[write_addr]  <= blue[(scoop_idx+1)*DATA_WIDTH-1 -: DATA_WIDTH];
+                    end
+                end
+
+                // Auto-increment pixel counter for next write cycle
+                if (pixel_counter + MAX_INPUT_SCOOP < TOTAL_PIXELS)
+                    pixel_counter <= pixel_counter + MAX_INPUT_SCOOP;
+                else
+                    pixel_counter <= '0;  // Wrap around when complete
+            end
         end
     end
 
