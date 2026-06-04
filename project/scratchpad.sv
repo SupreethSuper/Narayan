@@ -30,7 +30,7 @@ module scratchpad #(
                 end
                 1'b1 : begin
                     data_out <= memory[wr_addr];
-                end
+                end  
             endcase
         end
     end
