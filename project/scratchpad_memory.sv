@@ -13,26 +13,21 @@ module scratchpad_memory #(
 
     input  logic [MEM_ADDRESS-1:0] wr_addr,
 
-    input  logic [DATA_WIDTH*MAX_INPUT_SCOOP-1:0] data_in,
+    input  logic [DATA_WIDTH-1:0] data_in,
 
-    output logic [DATA_WIDTH*MAX_INPUT_SCOOP-1:0] data_out
+    output logic [DATA_WIDTH-1:0] data_out
 );
-
-    // =========================================================================
-    // Memory Declaration
-    // =========================================================================
 
     localparam DEPTH = ROWS * COLS;
 
-    logic [DATA_WIDTH*MAX_INPUT_SCOOP-1:0]
-          memory [0:DEPTH-1];
 
-    // =========================================================================
-    // RAM
-    // =========================================================================
 
-    always_ff @(posedge clk)
-    begin : ram_unit
+
+    logic [DATA_WIDTH-1:0] memory [0:DEPTH-1];
+
+
+
+    always_ff @(posedge clk) begin : ram_unit
 
         case (rw_)
 
