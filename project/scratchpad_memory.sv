@@ -1,7 +1,6 @@
-```systemverilog
 `include "nar_params.vh"
 
-module scratchpad #(
+module scratchpad_memory #(
     parameter DATA_WIDTH      = NAR_NUM_BITS,
     parameter ROWS            = NAR_MAT_ROWS,
     parameter COLS            = NAR_MAT_COLS,
@@ -56,5 +55,5 @@ module scratchpad #(
     end
 
 endmodule
-```
+
 
