@@ -1,3 +1,4 @@
+
 `include "nar_params.vh"
 
 module scratchpad_memory #(
@@ -10,8 +11,8 @@ module scratchpad_memory #(
 (
     input  logic clk,      // Clock
     input  logic rw_,      // 0 = Write, 1 = Read
-    input  logic cs,        // chip select
-    input  logic rst,       // reset
+    input  logic cs,       // chip select
+    input  logic rst,      // reset
 
     input  logic [MEM_ADDRESS-1:0] wr_addr,
 
@@ -21,7 +22,6 @@ module scratchpad_memory #(
 );
 
     localparam DEPTH = ROWS * COLS;
-
 
     //definitions of ZERO and ONE
     localparam logic [DATA_WIDTH-1:0] MEM_ZERO = {DATA_WIDTH{1'b0}};
@@ -37,13 +37,7 @@ module scratchpad_memory #(
 
     // assign next_fsm_state = fsm_state;
 
-
-
     logic [DATA_WIDTH-1:0] memory [0:DEPTH-1];
-    
- 
-
-
 
     always_ff @(posedge clk or negedge rst) begin
         if (!rst) begin
@@ -63,11 +57,10 @@ module scratchpad_memory #(
         else begin
             case (fsm_state)
                 RESET_STATE: begin
-                    if (rw_)
-                        next_fsm_state = READ_STATE;
-                    else
+                    if (!rw_)
                         next_fsm_state = WRITE_STATE;
-                    // next_fsm_state = RESET_STATE || WRITE_STATE;
+                    else
+                        next_fsm_state = RESET_STATE;
                 end
 
                 READ_STATE: begin
@@ -91,6 +84,12 @@ module scratchpad_memory #(
         end
     end
 
+    always_ff @(posedge clk) begin
+        if (fsm_state == WRITE_STATE) begin
+            memory[wr_addr] <= data_in;
+        end
+    end
+
     always_ff @(posedge clk or negedge rst) begin : ram_unit
         if (!rst) begin
             data_out <= MEM_ZERO;
@@ -99,13 +98,13 @@ module scratchpad_memory #(
             data_out <= MEM_ZERO;
         end
         else begin
-            case (next_fsm_state)
+            case (fsm_state)
                 READ_STATE: begin
                     data_out <= memory[wr_addr];
                 end
 
                 WRITE_STATE: begin
-                    memory[wr_addr] <= data_in;
+                    data_out <= data_out;
                 end
 
                 RESET_STATE: begin
