@@ -21,7 +21,7 @@ module scratchpad_memory #(
 );
 
     localparam DEPTH = ROWS * COLS;
-    
+
 
     //definitions of ZERO and ONE
     localparam logic [DATA_WIDTH-1:0] MEM_ZERO = {DATA_WIDTH{1'b0}};
@@ -63,11 +63,11 @@ module scratchpad_memory #(
         else begin
             case (fsm_state)
                 RESET_STATE: begin
-                    // if (rw_)
-                    //     next_fsm_state = READ_STATE;
-                    // else
-                    //     next_fsm_state = WRITE_STATE;
-                    next_fsm_state = RESET_STATE || WRITE_STATE;
+                    if (!rw)
+                        next_fsm_state = WRITE_STATE;
+                    else
+                        next_fsm_state = RESET_STATE;
+                    // next_fsm_state = RESET_STATE || WRITE_STATE;
                 end
 
                 READ_STATE: begin
