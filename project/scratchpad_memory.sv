@@ -41,7 +41,7 @@ module scratchpad_memory #(
 
     logic [DATA_WIDTH-1:0] memory [0:DEPTH-1];
     
-
+ 
 
 
 
