@@ -21,6 +21,7 @@ module scratchpad_memory #(
 );
 
     localparam DEPTH = ROWS * COLS;
+    
 
     //definitions of ZERO and ONE
     localparam logic [DATA_WIDTH-1:0] MEM_ZERO = {DATA_WIDTH{1'b0}};
