@@ -10,6 +10,8 @@ module scratchpad_memory #(
 (
     input  logic clk,      // Clock
     input  logic rw_,      // 0 = Write, 1 = Read
+    input  logic cs,        // chip select
+    input  logic rst,       // reset
 
     input  logic [MEM_ADDRESS-1:0] wr_addr,
 
@@ -20,6 +22,10 @@ module scratchpad_memory #(
 
     localparam DEPTH = ROWS * COLS;
 
+    //definitions of ZERO and ONE
+    localparam logic [DATA_WIDTH-1:0] MEM_ZERO = {DATA_WIDTH{1'b0}};
+    localparam logic [DATA_WIDTH-1:0] MEM_ONE = {DATA_WIDTH{1'b1}};
+
 
 
 
@@ -27,8 +33,13 @@ module scratchpad_memory #(
 
 
 
-    always_ff @(posedge clk) begin : ram_unit
+    always_ff @(posedge clk or posedge cs or negedge rst) begin : ram_unit
+    
+    if(!cs || !rst) begin
+        data_out <= MEM_ZERO;
+    end
 
+    else begin
         case (rw_)
 
             1'b0:
@@ -43,9 +54,11 @@ module scratchpad_memory #(
 
             default:
             begin
+                data_out <= MEM_ONE;
             end
 
         endcase
+    end
 
     end
 

@@ -1,16 +1,16 @@
-Fitter Status : Successful - Wed May 27 01:03:18 2026
+Fitter Status : Successful - Fri Jun  5 04:05:20 2026
 Quartus Prime Version : 25.1std.0 Build 1129 10/21/2025 SC Lite Edition
 Revision Name : narayan
-Top-level Entity Name : scratchpad
+Top-level Entity Name : scratchpad_memory
 Family : Cyclone V
 Device : 5CGXFC9E7F35C8
 Timing Models : Final
-Logic utilization (in ALMs) : 99 / 113,560 ( < 1 % )
-Total registers : 388
-Total pins : 482 / 616 ( 78 % )
+Logic utilization (in ALMs) : 346 / 113,560 ( < 1 % )
+Total registers : 5
+Total pins : 84 / 616 ( 14 % )
 Total virtual pins : 0
-Total block memory bits : 0 / 12,492,800 ( 0 % )
-Total RAM Blocks : 0 / 1,220 ( 0 % )
+Total block memory bits : 8,000,000 / 12,492,800 ( 64 % )
+Total RAM Blocks : 992 / 1,220 ( 81 % )
 Total DSP Blocks : 0 / 342 ( 0 % )
 Total HSSI RX PCSs : 0 / 12 ( 0 % )
 Total HSSI PMA RX Deserializers : 0 / 12 ( 0 % )
