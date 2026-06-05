@@ -63,10 +63,10 @@ module scratchpad_memory #(
         else begin
             case (fsm_state)
                 RESET_STATE: begin
-                    if (!rw)
-                        next_fsm_state = WRITE_STATE;
+                    if (rw_)
+                        next_fsm_state = READ_STATE;
                     else
-                        next_fsm_state = RESET_STATE;
+                        next_fsm_state = WRITE_STATE;
                     // next_fsm_state = RESET_STATE || WRITE_STATE;
                 end
 
