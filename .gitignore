@@ -40,3 +40,19 @@ C:/Users/supre/Downloads/Narayan/project/incremental_db/*
 
 #also not to upload any temp files
 *.tmp
+
+project/db/
+project/incremental_db/
+project/output_files/
+project/&1
+*.rpt
+*.summary
+*.smsg
+*.qws
+*.sof
+*.pof
+*.jdi
+*.pin
+*.qdf
+*.qws
+*.bak
