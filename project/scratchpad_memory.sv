@@ -118,6 +118,5 @@ module scratchpad_memory #(
         end
     end
 
+
 endmodule
-
-
