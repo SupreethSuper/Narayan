@@ -25,41 +25,97 @@ module scratchpad_memory #(
     //definitions of ZERO and ONE
     localparam logic [DATA_WIDTH-1:0] MEM_ZERO = {DATA_WIDTH{1'b0}};
     localparam logic [DATA_WIDTH-1:0] MEM_ONE = {DATA_WIDTH{1'b1}};
+    localparam int FSM_STATES = 3;
 
+    localparam logic [FSM_STATES-1:0] RESET_STATE = {FSM_STATES{1'b0}};
+    localparam logic [FSM_STATES-1:0] READ_STATE  = {{FSM_STATES-1{1'b0}}, 1'b1};
+    localparam logic [FSM_STATES-1:0] WRITE_STATE = {{FSM_STATES-2{1'b0}}, 1'b1, 1'b0};
+
+    logic [FSM_STATES-1:0] fsm_state;
+    logic [FSM_STATES-1:0] next_fsm_state;
+
+    // assign next_fsm_state = fsm_state;
 
 
 
     logic [DATA_WIDTH-1:0] memory [0:DEPTH-1];
-
-
-
-    always_ff @(posedge clk or posedge cs or negedge rst) begin : ram_unit
     
-    if(!cs || !rst) begin
-        data_out <= MEM_ZERO;
+
+
+
+
+    always_ff @(posedge clk or negedge rst) begin
+        if (!rst) begin
+            fsm_state <= RESET_STATE;
+        end
+        else begin
+            fsm_state <= next_fsm_state;
+        end
     end
 
-    else begin
-        case (rw_)
+    always_comb begin
+        next_fsm_state = fsm_state;
 
-            1'b0:
-            begin
-                memory[wr_addr] <= data_in;
-            end
+        if (!cs) begin
+            next_fsm_state = RESET_STATE;
+        end
+        else begin
+            case (fsm_state)
+                RESET_STATE: begin
+                    // if (rw_)
+                    //     next_fsm_state = READ_STATE;
+                    // else
+                    //     next_fsm_state = WRITE_STATE;
+                    next_fsm_state = RESET_STATE || WRITE_STATE;
+                end
 
-            1'b1:
-            begin
-                data_out <= memory[wr_addr];
-            end
+                READ_STATE: begin
+                    if (rw_)
+                        next_fsm_state = READ_STATE;
+                    else
+                        next_fsm_state = WRITE_STATE;
+                end
 
-            default:
-            begin
-                data_out <= MEM_ONE;
-            end
+                WRITE_STATE: begin
+                    if (rw_)
+                        next_fsm_state = READ_STATE;
+                    else
+                        next_fsm_state = WRITE_STATE;
+                end
 
-        endcase
+                default: begin
+                    next_fsm_state = RESET_STATE;
+                end
+            endcase
+        end
     end
 
+    always_ff @(posedge clk or negedge rst) begin : ram_unit
+        if (!rst) begin
+            data_out <= MEM_ZERO;
+        end
+        else if (!cs) begin
+            data_out <= MEM_ZERO;
+        end
+        else begin
+            case (next_fsm_state)
+                READ_STATE: begin
+                    data_out <= memory[wr_addr];
+                end
+
+                WRITE_STATE: begin
+                    memory[wr_addr] <= data_in;
+                end
+
+                RESET_STATE: begin
+                    data_out <= MEM_ZERO;
+                end
+
+                default: begin
+                    data_out <= MEM_ZERO;
+                end
+            endcase
+        end
     end
 
 endmodule

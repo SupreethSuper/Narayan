@@ -132,19 +132,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "wr_addr[17]",
-					"strict" : false
-				},
-				{
-					"name" : "clk",
-					"strict" : false
-				},
-				{
-					"name" : "rw_",
-					"strict" : false
-				},
-				{
-					"name" : "wr_addr[14]",
+					"name" : "wr_addr[15]",
 					"strict" : false
 				},
 				{
@@ -152,11 +140,31 @@
 					"strict" : false
 				},
 				{
-					"name" : "wr_addr[15]",
+					"name" : "cs",
+					"strict" : false
+				},
+				{
+					"name" : "rst",
+					"strict" : false
+				},
+				{
+					"name" : "rw_",
+					"strict" : false
+				},
+				{
+					"name" : "wr_addr[17]",
+					"strict" : false
+				},
+				{
+					"name" : "wr_addr[14]",
 					"strict" : false
 				},
 				{
 					"name" : "wr_addr[16]",
+					"strict" : false
+				},
+				{
+					"name" : "clk",
 					"strict" : false
 				},
 				{
