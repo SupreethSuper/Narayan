@@ -34,22 +34,39 @@ module scratchpad_memory #(
 
     logic [FSM_STATES-1:0] fsm_state;
     logic [FSM_STATES-1:0] next_fsm_state;
+    logic write_done; //FSM LOGIC, TO AVOID READ AGAIN WITHOUT WRITING
 
     // assign next_fsm_state = fsm_state;
 
-    logic [DATA_WIDTH-1:0] memory [0:DEPTH-1];
+    // logic [DATA_WIDTH-1:0] memory [0:DEPTH-1];
+
+    // using 2D array for natural tree mux insertion
+    logic [ DATA_WIDTH - 1 : 0 ] memory [ ROWS - 1 : 0 ][ COLS - 1 : 0 ];
+
+
 
     always_ff @(posedge clk or negedge rst) begin
         if (!rst) begin
             fsm_state <= RESET_STATE;
+            write_done <= 1'b0;
         end
         else begin
             fsm_state <= next_fsm_state;
+            // Set write_done flag when entering WRITE_STATE
+            if (next_fsm_state == WRITE_STATE) begin
+                write_done <= 1'b1;
+            end
         end
     end
 
+
+
+
     always_comb begin
         next_fsm_state = fsm_state;
+
+    
+
 
         if (!cs) begin
             next_fsm_state = RESET_STATE;
@@ -84,9 +101,13 @@ module scratchpad_memory #(
         end
     end
 
+    // Write when the FSM is entering WRITE this cycle. Gating on the
+    // combinational next state (not the registered fsm_state) aligns the
+    // commit with the address/data presented on the same edge, so every
+    // write lands and no stray write occurs on the WRITE->READ exit.
     always_ff @(posedge clk) begin
-        if (fsm_state == WRITE_STATE) begin
-            memory[wr_addr] <= data_in;
+        if (next_fsm_state == WRITE_STATE) begin
+            memory [ wr_addr / COLS ][ wr_addr % COLS ] <= data_in;
         end
     end
 
@@ -100,7 +121,15 @@ module scratchpad_memory #(
         else begin
             case (fsm_state)
                 READ_STATE: begin
-                    data_out <= memory[wr_addr];
+                    // Output valid memory data only if at least one WRITE has occurred
+                    // Otherwise output ZERO (safe default)
+                    if (write_done) begin
+                        // Implementation of tree mux for improved timing
+                        data_out <= memory [ wr_addr / COLS ] [ wr_addr % COLS ];
+                    end
+                    else begin
+                        data_out <= MEM_ZERO;
+                    end
                 end
 
                 WRITE_STATE: begin
