@@ -34,7 +34,7 @@ module scratchpad_memory #(
 
     logic [FSM_STATES-1:0] fsm_state;
     logic [FSM_STATES-1:0] next_fsm_state;
-    logic write_done; //FSM LOGIC, TO AVOID READ AGAIN WITHOUT WRITING
+    // logic write_done; //FSM LOGIC, TO AVOID READ AGAIN WITHOUT WRITING
 
     // assign next_fsm_state = fsm_state;
 
@@ -48,14 +48,14 @@ module scratchpad_memory #(
     always_ff @(posedge clk or negedge rst) begin
         if (!rst) begin
             fsm_state <= RESET_STATE;
-            write_done <= 1'b0;
+            // write_done <= 1'b0;
         end
         else begin
             fsm_state <= next_fsm_state;
-            // Set write_done flag when entering WRITE_STATE
-            if (next_fsm_state == WRITE_STATE) begin
-                write_done <= 1'b1;
-            end
+            // // Set write_done flag when entering WRITE_STATE
+            // if (next_fsm_state == WRITE_STATE) begin
+            //     write_done <= 1'b1;
+            // end
         end
     end
 
@@ -121,15 +121,7 @@ module scratchpad_memory #(
         else begin
             case (fsm_state)
                 READ_STATE: begin
-                    // Output valid memory data only if at least one WRITE has occurred
-                    // Otherwise output ZERO (safe default)
-                    if (write_done) begin
-                        // Implementation of tree mux for improved timing
-                        data_out <= memory [ wr_addr / COLS ] [ wr_addr % COLS ];
-                    end
-                    else begin
-                        data_out <= MEM_ZERO;
-                    end
+                    data_out <= memory [ wr_addr / COLS ] [ wr_addr % COLS ];
                 end
 
                 WRITE_STATE: begin
@@ -148,4 +140,87 @@ module scratchpad_memory #(
     end
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+// module buffer_out #(
+//     parameter DATA_WIDTH      = NAR_NUM_BITS
+// )
+// (
+
+
+//     input  logic [DATA_WIDTH-1:0] data_in_buffer,
+
+//     input logic cs,
+
+//     output logic [DATA_WIDTH-1:0] data_out_buffer
+// );
+//     bufif1 (data_out_buffer, data_in_buffer, cs);
+
+// endmodule
+
+
+// module scratchpad_memory #(
+//     parameter DATA_WIDTH      = NAR_NUM_BITS,
+//     parameter ROWS            = NAR_MAT_ROWS,
+//     parameter COLS            = NAR_MAT_COLS,
+//     parameter MAX_INPUT_SCOOP = NAR_MAX_INPUT_SCOOP,
+//     parameter MEM_ADDRESS     = $clog2(NAR_MAT_ROWS * NAR_MAT_COLS)
+// )
+// (
+//     input  logic clk,      // Clock
+//     input  logic rw_,      // 0 = Write, 1 = Read
+//     input  logic cs,       // chip select
+//     input  logic rst,      // reset
+
+//     input  logic [MEM_ADDRESS-1:0] wr_addr,
+
+//     input  logic [DATA_WIDTH-1:0] data_in,
+
+//     output logic [DATA_WIDTH-1:0] data_out
+// );
+
+
+
+// endmodule
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 endmodule
+
+
