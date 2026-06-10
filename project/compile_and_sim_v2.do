@@ -1,10 +1,9 @@
 # ================================================================================
-# ModelSim Compilation and Simulation Script for Scratchpad Memory Testbench
+# ModelSim Compilation and Simulation Script - v2 (FSM-based testbench)
 # ================================================================================
-# Usage: vsim -c -do compile_and_sim.do
+# Usage: vsim -c -do compile_and_sim_v2.do
 # ================================================================================
 
-# Set project directories
 set work_dir ./work
 set proj_dir [pwd]
 
@@ -22,43 +21,38 @@ vmap work $work_dir
 # ================================================================================
 
 puts "╔════════════════════════════════════════════════════════════════╗"
-puts "║       Compiling Scratchpad Memory Design & Testbench          ║"
+puts "║   Compiling Scratchpad Memory FSM Design & Testbench (v2)     ║"
 puts "╚════════════════════════════════════════════════════════════════╝"
 puts ""
 
-# NOTE: Using -sv flag for SystemVerilog syntax support (allows localparam in .vh files)
-# Do NOT compile .vh files directly - they will be included via `include statements
-
-# Compile design file (SystemVerilog mode, includes nar_params.vh)
-puts "Compiling: scratchpad_memory.sv"
+# Compile design file
+puts "Compiling: scratchpad_memory.sv (FSM-based design)"
 vlog -sv -work $work_dir "$proj_dir/scratchpad_memory.sv" 2>&1
 
-# Compile testbench (SystemVerilog mode, includes nar_params.vh)
-puts "Compiling: tb_scratchpad_memory.sv"
-vlog -sv -work $work_dir "$proj_dir/tb_scratchpad_memory.sv" 2>&1
+# Compile FSM testbench
+puts "Compiling: tb_scratchpad_memory_v2.sv (FSM testbench)"
+vlog -sv -work $work_dir "$proj_dir/tb_scratchpad_memory_v2.sv" 2>&1
 
 puts ""
 puts "Compilation complete!"
 puts ""
 
 # ================================================================================
-# STEP 3: Simulate the Testbench
+# STEP 3: Simulate the FSM Testbench
 # ================================================================================
 
 puts "╔════════════════════════════════════════════════════════════════╗"
-puts "║              Running Simulation - Testbench                   ║"
+puts "║         Running FSM Simulation - Testbench v2                ║"
 puts "╚════════════════════════════════════════════════════════════════╝"
 puts ""
 
 # Start simulation with testbench as top-level module
-# Run for sufficient time to complete all tests
 vsim -work $work_dir \
      -t 1ps \
-     tb_scratchpad_memory
+     tb_scratchpad_memory_v2
 
-# Run simulation for sufficient time
-# 66 tests × 10ns average per test ≈ 660ns + overhead = 2000ns
-run 5000ns
+# Run simulation
+run 10000ns
 
 # ================================================================================
 # STEP 4: Print final message and exit
@@ -71,5 +65,4 @@ puts "║           Check transcript output above for results           ║"
 puts "╚════════════════════════════════════════════════════════════════╝"
 puts ""
 
-# Exit ModelSim
 exit
