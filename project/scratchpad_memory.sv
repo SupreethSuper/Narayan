@@ -1,11 +1,12 @@
 
 `include "nar_params.vh"
 
+
+
 module scratchpad_memory #(
     parameter DATA_WIDTH      = NAR_NUM_BITS,
     parameter ROWS            = NAR_MAT_ROWS,
     parameter COLS            = NAR_MAT_COLS,
-    parameter MAX_INPUT_SCOOP = NAR_MAX_INPUT_SCOOP,
     parameter MEM_ADDRESS     = $clog2(NAR_MAT_ROWS * NAR_MAT_COLS)
 )
 (
@@ -21,7 +22,14 @@ module scratchpad_memory #(
     output logic [DATA_WIDTH-1:0] data_out
 );
 
-    localparam DEPTH = ROWS * COLS;
+    //  parameter MAX_INPUT_SCOOP = NAR_MAX_INPUT_SCOOP
+    //the above param got removed, due to linter warnings
+
+
+
+
+    // localparam DEPTH = ROWS * COLS;
+    //the above param got removed, due to linter warnings
 
     //definitions of ZERO and ONE
     localparam logic [DATA_WIDTH-1:0] MEM_ZERO = {DATA_WIDTH{1'b0}};
