@@ -21,12 +21,18 @@ module scratchpad_memory #(
     localparam logic [DATA_WIDTH-1:0] MEM_ZERO = {DATA_WIDTH{1'b0}};
     localparam int FSM_STATES = 3;
 
-    localparam logic [FSM_STATES-1:0] RESET_STATE = {FSM_STATES{1'b0}};
-    localparam logic [FSM_STATES-1:0] READ_STATE  = {{FSM_STATES-1{1'b0}}, 1'b1};
-    localparam logic [FSM_STATES-1:0] WRITE_STATE = {{FSM_STATES-2{1'b0}}, 1'b1, 1'b0};
+    // localparam logic [FSM_STATES-1:0] RESET_STATE = {FSM_STATES{1'b0}};
+    // localparam logic [FSM_STATES-1:0] READ_STATE  = {{FSM_STATES-1{1'b0}}, 1'b1};
+    // localparam logic [FSM_STATES-1:0] WRITE_STATE = {{FSM_STATES-2{1'b0}}, 1'b1, 1'b0};
 
-    logic [FSM_STATES-1:0] fsm_state;
-    logic [FSM_STATES-1:0] next_fsm_state;
+    typedef enum {
+        RESET_STATE,
+        READ_STATE,
+        WRITE_STATE
+    } fsm_state_t;
+
+    fsm_state_t fsm_state;
+    fsm_state_t next_fsm_state;
 
     // 2D array for natural tree mux insertion
     logic [DATA_WIDTH-1:0] memory [ROWS-1:0][COLS-1:0];
@@ -58,7 +64,7 @@ module scratchpad_memory #(
                     if (!rw_)
                         next_fsm_state = WRITE_STATE;
                     else
-                        next_fsm_state = RESET_STATE;
+                        next_fsm_state = READ_STATE; //RESET STATE CAUSES RACE CONDITION
                 end
 
                 READ_STATE: begin
@@ -87,7 +93,7 @@ module scratchpad_memory #(
     // commit with the address/data presented on the same edge, so every
     // write lands and no stray write occurs on the WRITE->READ exit.
     always_ff @(posedge clk) begin
-        if (next_fsm_state == WRITE_STATE) begin
+        if ((fsm_state == WRITE_STATE ) && cs) begin
             memory[row][col] <= data_in;
         end
     end
