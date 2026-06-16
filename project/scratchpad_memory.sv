@@ -37,6 +37,15 @@ module scratchpad_memory #(
     // 2D array for natural tree mux insertion
     logic [DATA_WIDTH-1:0] memory [ROWS-1:0][COLS-1:0];
 
+    logic [ ROWS - 1 : 0 ] check_zero_rows;
+    logic [ COLS - 1 : 0 ] check_zero_cols;
+
+    logic clear_all; // asserts at reset, de-asserts after a write
+
+
+
+
+
     // Address decode, computed once and shared by the write and read ports
     logic [MEM_ADDRESS-1:0] row;
     logic [MEM_ADDRESS-1:0] col;
@@ -56,11 +65,15 @@ module scratchpad_memory #(
         next_fsm_state = fsm_state;
 
         if (!cs) begin
-            next_fsm_state = RESET_STATE;
+            next_fsm_state = READ_STATE;
         end
         else begin
             case (fsm_state)
                 RESET_STATE: begin
+                    clear_all = 1'b1;
+                    check_zero_rows = {ROWS{1'b0}};
+                    check_zero_cols = {COLS{1'b0}};
+
                     if (!rw_)
                         next_fsm_state = WRITE_STATE;
                     else
@@ -75,6 +88,7 @@ module scratchpad_memory #(
                 end
 
                 WRITE_STATE: begin
+                    clear_all = 1'b0;
                     if (rw_)
                         next_fsm_state = READ_STATE;
                     else
@@ -95,6 +109,9 @@ module scratchpad_memory #(
     always_ff @(posedge clk) begin
         if ((fsm_state == WRITE_STATE ) && cs) begin
             memory[row][col] <= data_in;
+            check_zero_rows[row] <= 1'b1;
+            check_zero_cols[col] <= 1'b1;
+            
         end
     end
 
@@ -109,8 +126,28 @@ module scratchpad_memory #(
         end
         else begin
             case (fsm_state)
+
+
                 READ_STATE: begin
-                    data_out <= memory[row][col];
+
+                    if(clear_all) begin
+                        
+                        data_out <= MEM_ZERO; 
+
+                    end
+
+                    else if( check_zero_rows[row]  && check_zero_cols[col] ) begin
+
+                        data_out <= memory[row][col];
+                    end 
+
+                    else begin
+                        
+                        data_out <= MEM_ZERO;
+
+
+                    end
+
                 end
 
                 WRITE_STATE: begin
