@@ -24,6 +24,7 @@ _vmake
 project/db/*
 project/output_files/*
 project/simulation/*
+project/simulation/questa/narayan.svo
 project/incremental_db/*
 project/db/narayan.quiproj.55152.rdr.flock
 

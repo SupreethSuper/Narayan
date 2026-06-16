@@ -1,64 +1,71 @@
 `include "nar_params.vh"
 
 module scratchpad_memory #(
-    parameter DATA_WIDTH      = NAR_NUM_BITS,
-    parameter ROWS            = NAR_MAT_ROWS,
-    parameter COLS            = NAR_MAT_COLS,
-    parameter MAX_INPUT_SCOOP = NAR_MAX_INPUT_SCOOP,
-    parameter MEM_ADDRESS     = $clog2(NAR_MAT_ROWS * NAR_MAT_COLS)
+    parameter DATA_WIDTH  = NAR_NUM_BITS,
+    parameter ROWS        = NAR_MAT_ROWS,
+    parameter COLS        = NAR_MAT_COLS,
+    parameter MEM_ADDRESS = $clog2(NAR_MAT_ROWS * NAR_MAT_COLS)
 )
 (
     input  logic clk,      // Clock
     input  logic rw_,      // 0 = Write, 1 = Read
-    input  logic cs,        // chip select
-    input  logic rst,       // reset
+    input  logic cs,       // chip select
+    input  logic rst,      // reset (active-low, async)
 
     input  logic [MEM_ADDRESS-1:0] wr_addr,
+    input  logic [DATA_WIDTH-1:0]  data_in,
 
-    input  logic [DATA_WIDTH-1:0] data_in,
-
-    output logic [DATA_WIDTH-1:0] data_out
+    output logic [DATA_WIDTH-1:0]  data_out
 );
 
-    localparam DEPTH = ROWS * COLS;
-
-
-    //definitions of ZERO and ONE
     localparam logic [DATA_WIDTH-1:0] MEM_ZERO = {DATA_WIDTH{1'b0}};
-    localparam logic [DATA_WIDTH-1:0] MEM_ONE = {DATA_WIDTH{1'b1}};
-    localparam int FSM_STATES = 3;
+    // localparam int FSM_STATES = 3;
 
-    localparam logic [FSM_STATES-1:0] RESET_STATE = {FSM_STATES{1'b0}};
-    localparam logic [FSM_STATES-1:0] READ_STATE  = {{FSM_STATES-1{1'b0}}, 1'b1};
-    localparam logic [FSM_STATES-1:0] WRITE_STATE = {{FSM_STATES-2{1'b0}}, 1'b1, 1'b0};
+    // localparam logic [FSM_STATES-1:0] RESET_STATE = {FSM_STATES{1'b0}};
+    // localparam logic [FSM_STATES-1:0] READ_STATE  = {{FSM_STATES-1{1'b0}}, 1'b1};
+    // localparam logic [FSM_STATES-1:0] WRITE_STATE = {{FSM_STATES-2{1'b0}}, 1'b1, 1'b0};
 
-    logic [FSM_STATES-1:0] fsm_state;
-    logic [FSM_STATES-1:0] next_fsm_state;
+    typedef enum {
+        RESET_STATE,
+        READ_STATE,
+        WRITE_STATE
+    } fsm_state_t;
 
-    // assign next_fsm_state = fsm_state;
+    fsm_state_t fsm_state;
+    fsm_state_t next_fsm_state;
+
+    // 2D array for natural tree mux insertion
+    logic [DATA_WIDTH-1:0] memory [ROWS-1:0][COLS-1:0];
+
+    logic [ ROWS - 1 : 0 ] check_zero_rows;
+    logic [ COLS - 1 : 0 ] check_zero_cols;
+
+    logic clear_all; // asserts at reset, de-asserts after a write
 
 
 
-    logic [DATA_WIDTH-1:0] memory [0:DEPTH-1];
-    
 
 
+    // Address decode, computed once and shared by the write and read ports
+    logic [MEM_ADDRESS-1:0] row;
+    logic [MEM_ADDRESS-1:0] col;
+    assign row = wr_addr / COLS;
+    assign col = wr_addr % COLS;
 
-
+    // State register
     always_ff @(posedge clk or negedge rst) begin
-        if (!rst) begin
+        if (!rst)
             fsm_state <= RESET_STATE;
-        end
-        else begin
+        else
             fsm_state <= next_fsm_state;
-        end
     end
 
+    // Next-state logic
     always_comb begin
         next_fsm_state = fsm_state;
 
         if (!cs) begin
-            next_fsm_state = RESET_STATE;
+            next_fsm_state = READ_STATE;
         end
         else begin
             case (fsm_state)
@@ -78,6 +85,7 @@ module scratchpad_memory #(
                 end
 
                 WRITE_STATE: begin
+                    clear_all = 1'b0;
                     if (rw_)
                         next_fsm_state = READ_STATE;
                     else
@@ -91,6 +99,21 @@ module scratchpad_memory #(
         end
     end
 
+    // Write when the FSM is entering WRITE this cycle. Gating on the
+    // combinational next state (not the registered fsm_state) aligns the
+    // commit with the address/data presented on the same edge, so every
+    // write lands and no stray write occurs on the WRITE->READ exit.
+    always_ff @(posedge clk) begin
+        if ((fsm_state == WRITE_STATE ) && cs) begin
+            memory[row][col] <= data_in;
+            check_zero_rows[row] <= 1'b1;
+            check_zero_cols[col] <= 1'b1;
+            
+        end
+    end
+
+    // Registered read port: data_out is always driven by a flop, so there
+    // is no combinational input-to-output path through this module.
     always_ff @(posedge clk or negedge rst) begin : ram_unit
         if (!rst) begin
             data_out <= MEM_ZERO;
@@ -99,13 +122,38 @@ module scratchpad_memory #(
             data_out <= MEM_ZERO;
         end
         else begin
-            case (next_fsm_state)
+            case (fsm_state)
+
+
                 READ_STATE: begin
-                    data_out <= memory[wr_addr];
+
+                    // data_out <= data_out;
+                    if(clear_all) begin
+                        
+                        data_out <= MEM_ZERO; 
+
+                    end
+
+                    else if((check_zero_rows[row]  && check_zero_cols[col]) ) begin
+                        // $display("clear all = %0d", clear_all);
+                        // $display("rows = %0d", row);
+                        // $display("cols = %0d", col);
+                        data_out <= memory[row][col];
+                    end 
+
+
+
+                    else begin
+                        
+                        data_out <= MEM_ZERO;
+
+
+                    end
+
                 end
 
                 WRITE_STATE: begin
-                    memory[wr_addr] <= data_in;
+                    data_out <= data_out;
                 end
 
                 RESET_STATE: begin
@@ -120,5 +168,3 @@ module scratchpad_memory #(
     end
 
 endmodule
-
-
