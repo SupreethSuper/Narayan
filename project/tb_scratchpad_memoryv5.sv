@@ -209,10 +209,14 @@ module tb_scratchpad_memory_v5;
         `RESET
         `CS_ON
         `RESET_WRITE_TRANS
-        `WRITE_TO(5'h15, 32'hDEADBEEF)
+        `WRITE_TO(5'd0, 32'hDEAD0000)
+        `WRITE_TO(5'd6, 32'h0000_BEEF)
         `WRITE_READ_TRANS
-        `READ_FROM(5'h15)
-        check_equality(32'hDEAD_BEEF, data_out, "Test 1: Write then Read after reset with CS ON");
+        `READ_FROM(5'd1)
+        check_equality(32'h0000_0000, data_out, "Test 1: Write then Read after reset with CS ON");
+
+        `READ_FROM(5'd5)
+        check_equality(32'h0000_0000, data_out, "Test 1: Write then Read after reset with CS ON");
 
         //RESERT -> CS_OFF -> TRY TO WRITE -> READ FROM THAT
         `RESET

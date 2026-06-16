@@ -19,7 +19,7 @@ module scratchpad_memory #(
 );
 
     localparam logic [DATA_WIDTH-1:0] MEM_ZERO = {DATA_WIDTH{1'b0}};
-    localparam int FSM_STATES = 3;
+    // localparam int FSM_STATES = 3;
 
     // localparam logic [FSM_STATES-1:0] RESET_STATE = {FSM_STATES{1'b0}};
     // localparam logic [FSM_STATES-1:0] READ_STATE  = {{FSM_STATES-1{1'b0}}, 1'b1};
@@ -130,16 +130,21 @@ module scratchpad_memory #(
 
                 READ_STATE: begin
 
+                    // data_out <= data_out;
                     if(clear_all) begin
                         
                         data_out <= MEM_ZERO; 
 
                     end
 
-                    else if( check_zero_rows[row]  && check_zero_cols[col] ) begin
-
+                    else if((check_zero_rows[row]  && check_zero_cols[col]) ) begin
+                        // $display("clear all = %0d", clear_all);
+                        // $display("rows = %0d", row);
+                        // $display("cols = %0d", col);
                         data_out <= memory[row][col];
                     end 
+
+
 
                     else begin
                         
