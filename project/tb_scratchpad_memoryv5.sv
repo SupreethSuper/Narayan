@@ -186,7 +186,7 @@ module tb_scratchpad_memory_v5;
     endtask
 
     task automatic check_equality(logic [DATA_WIDTH-1:0] expected, logic [DATA_WIDTH-1:0] actual, string test_name);
-        if (expected != actual)
+        if (expected !== actual)
             test_fail(test_name, $sformatf("Expected: 0x%h Actual: 0x%h", expected, actual));
         else
             test_pass(test_name);

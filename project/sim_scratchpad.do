@@ -8,10 +8,10 @@ vmap work work
 
 # ── Compile design, then testbench (.vh files resolved via +incdir) ───────────
 vlog -sv -work work +incdir+. scratchpad_memory.sv
-vlog -sv -work work +incdir+. tb_scratchpad_memoryv5.sv
+vlog -sv -work work +incdir+. tb_scratchpad_memoryv10.sv
 
 # ── Simulate ──────────────────────────────────────────────────────────────────
-vsim -t 1ps work.tb_scratchpad_memory_v5
+vsim -t 1ps work.tb_scratchpad_memoryv10
 
 
 

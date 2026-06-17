@@ -19,11 +19,6 @@ module scratchpad_memory #(
 );
 
     localparam logic [DATA_WIDTH-1:0] MEM_ZERO = {DATA_WIDTH{1'b0}};
-    // localparam int FSM_STATES = 3;
-
-    // localparam logic [FSM_STATES-1:0] RESET_STATE = {FSM_STATES{1'b0}};
-    // localparam logic [FSM_STATES-1:0] READ_STATE  = {{FSM_STATES-1{1'b0}}, 1'b1};
-    // localparam logic [FSM_STATES-1:0] WRITE_STATE = {{FSM_STATES-2{1'b0}}, 1'b1, 1'b0};
 
     typedef enum {
         RESET_STATE,
@@ -34,25 +29,24 @@ module scratchpad_memory #(
     fsm_state_t fsm_state;
     fsm_state_t next_fsm_state;
 
-    // 2D array for natural tree mux insertion
+    // Data store (not reset — its contents are masked by cell_valid below).
     logic [DATA_WIDTH-1:0] memory [ROWS-1:0][COLS-1:0];
 
-    logic [ ROWS - 1 : 0 ] check_zero_rows;
-    logic [ COLS - 1 : 0 ] check_zero_cols;
+    // Per-cell valid flags, PACKED so the whole thing clears in one shot on
+    // reset. This is the key: reset drives ONE small (ROWS*COLS-bit) register,
+    // NOT a per-element loop over the 800-bit memory — so the reset net stays
+    // tiny and the slew is unaffected. A cell reads back its data only if its
+    // own valid bit is set (per-cell => no row/col aliasing); reset clears all
+    // valid bits => no stale-data resurrection after a later write.
+    logic [ROWS*COLS-1:0] cell_valid;
 
-    logic clear_all; // asserts at reset, de-asserts after a write
-
-
-
-
-
-    // Address decode, computed once and shared by the write and read ports
+    // Address decode, shared by the write and read ports
     logic [MEM_ADDRESS-1:0] row;
     logic [MEM_ADDRESS-1:0] col;
     assign row = wr_addr / COLS;
     assign col = wr_addr % COLS;
 
-    // State register
+    // State register (active-low async reset)
     always_ff @(posedge clk or negedge rst) begin
         if (!rst)
             fsm_state <= RESET_STATE;
@@ -60,7 +54,7 @@ module scratchpad_memory #(
             fsm_state <= next_fsm_state;
     end
 
-    // Next-state logic
+    // Next-state logic (pure: no side-effect signals, no inferred latches)
     always_comb begin
         next_fsm_state = fsm_state;
 
@@ -70,53 +64,42 @@ module scratchpad_memory #(
         else begin
             case (fsm_state)
                 RESET_STATE: begin
-                    clear_all = 1'b1;
-                    check_zero_rows = {ROWS{1'b0}};
-                    check_zero_cols = {COLS{1'b0}};
-
-                    if (!rw_)
-                        next_fsm_state = WRITE_STATE;
-                    else
-                        next_fsm_state = READ_STATE; //RESET STATE CAUSES RACE CONDITION
+                    if (!rw_) next_fsm_state = WRITE_STATE;
+                    else      next_fsm_state = READ_STATE;
                 end
-
                 READ_STATE: begin
-                    if (rw_)
-                        next_fsm_state = READ_STATE;
-                    else
-                        next_fsm_state = WRITE_STATE;
+                    if (rw_)  next_fsm_state = READ_STATE;
+                    else      next_fsm_state = WRITE_STATE;
                 end
-
                 WRITE_STATE: begin
-                    clear_all = 1'b0;
-                    if (rw_)
-                        next_fsm_state = READ_STATE;
-                    else
-                        next_fsm_state = WRITE_STATE;
+                    if (rw_)  next_fsm_state = READ_STATE;
+                    else      next_fsm_state = WRITE_STATE;
                 end
-
-                default: begin
-                    next_fsm_state = RESET_STATE;
-                end
+                default: next_fsm_state = RESET_STATE;
             endcase
         end
     end
 
-    // Write when the FSM is entering WRITE this cycle. Gating on the
-    // combinational next state (not the registered fsm_state) aligns the
-    // commit with the address/data presented on the same edge, so every
-    // write lands and no stray write occurs on the WRITE->READ exit.
-    always_ff @(posedge clk) begin
-        if ((fsm_state == WRITE_STATE ) && cs) begin
-            memory[row][col] <= data_in;
-            check_zero_rows[row] <= 1'b1;
-            check_zero_cols[col] <= 1'b1;
-            
-        end
+    // Valid flags: async-cleared as a single packed register (no loop, small
+    // reset fan-out), then set one bit per committed write. Out-of-range
+    // addresses (row >= ROWS) target a non-existent element and are ignored.
+    always_ff @(posedge clk or negedge rst) begin
+        if (!rst)
+            cell_valid <= { {(ROWS*COLS){1'b0}} };
+        else if ((fsm_state == WRITE_STATE) && cs)
+            cell_valid[wr_addr] <= 1'b1;
     end
 
-    // Registered read port: data_out is always driven by a flop, so there
-    // is no combinational input-to-output path through this module.
+    // Data write port (no reset on the data array itself).
+    always_ff @(posedge clk) begin
+        if ((fsm_state == WRITE_STATE) && cs)
+            memory[row][col] <= data_in;
+    end
+
+    // Registered read port: data_out is always driven by a flop (no comb
+    // input->output path). A cell returns its data only when its valid bit is
+    // set, else MEM_ZERO. Out-of-range reads index a non-existent valid bit
+    // (X), so the gate falls through to MEM_ZERO.
     always_ff @(posedge clk or negedge rst) begin : ram_unit
         if (!rst) begin
             data_out <= MEM_ZERO;
@@ -126,33 +109,11 @@ module scratchpad_memory #(
         end
         else begin
             case (fsm_state)
-
-
                 READ_STATE: begin
-
-                    // data_out <= data_out;
-                    if(clear_all) begin
-                        
-                        data_out <= MEM_ZERO; 
-
-                    end
-
-                    else if((check_zero_rows[row]  && check_zero_cols[col]) ) begin
-                        // $display("clear all = %0d", clear_all);
-                        // $display("rows = %0d", row);
-                        // $display("cols = %0d", col);
+                    if (cell_valid[wr_addr])
                         data_out <= memory[row][col];
-                    end 
-
-
-
-                    else begin
-                        
+                    else
                         data_out <= MEM_ZERO;
-
-
-                    end
-
                 end
 
                 WRITE_STATE: begin
