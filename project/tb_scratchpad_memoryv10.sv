@@ -269,7 +269,7 @@ module tb_scratchpad_memoryv10;
     );
         wr_addr = addr[MEM_ADDRESS-1:0];
 
-        `READ
+        `CLK_PERIOD_DEF
 
         // Registered read port latency allowance.
         `READ
@@ -333,8 +333,10 @@ module tb_scratchpad_memoryv10;
         // =====================================================================
 
         apply_reset();
-        do_write(5'd0, 32'hAAAA_0000, 1'b1);
-        do_read_check(5'd1, "C1: neighbor unwritten after addr0 write -> zero");
+        do_write(0, 32'hAAAA_0000, 1'b1);
+        $display("time :%t", $time);
+        do_read_check(1, "C1: neighbor unwritten after addr0 write -> zero");
+        $display("time :%t", $time);
         do_read_check(DEPTH-1, "C2: distant unwritten after addr0 write -> zero");
 
         apply_reset();
