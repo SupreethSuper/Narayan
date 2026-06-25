@@ -22,6 +22,7 @@ module narayan_bdf(
 	rw_,
 	rst,
 	cs,
+	next,
 	data_in,
 	mem1_out,
 	mem2_out,
@@ -34,6 +35,7 @@ input wire	clk;
 input wire	rw_;
 input wire	rst;
 input wire	cs;
+input wire	next;
 input wire	[31:0] data_in;
 output wire	[31:0] mem1_out;
 output wire	[31:0] mem2_out;
@@ -112,6 +114,7 @@ scheduler	b2v_inst4(
 	.rw_(rw_),
 	.cs(cs),
 	.rst(rst),
+	.next(next),
 	.data_in(data_in),
 	.rw_out(SYNTHESIZED_WIRE_21),
 	.rst_out(SYNTHESIZED_WIRE_22),

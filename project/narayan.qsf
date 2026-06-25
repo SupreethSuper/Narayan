@@ -65,7 +65,6 @@ set_global_assignment -name EDA_TEST_BENCH_FILE scratchpad_image_tb.sv -section_
 set_global_assignment -name FLOW_ENABLE_RTL_VIEWER ON
 set_global_assignment -name TIMING_ANALYZER_MULTICORNER_ANALYSIS ON
 set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
-set_global_assignment -name VERILOG_FILE narayan_bdf.v
 set_global_assignment -name VERILOG_INCLUDE_FILE scheduler_defines.vh
 set_global_assignment -name VERILOG_INCLUDE_FILE scheduler_params.vh
 set_global_assignment -name SYSTEMVERILOG_FILE scheduler.sv

@@ -17,6 +17,7 @@ module scheduler #(
     input  logic rst,      // active-low async reset
 
     input  logic [DATA_WIDTH-1:0]  data_in,
+    input logic                    next,
     output logic [DATA_WIDTH-1:0]  data_out,
     output logic [NUM_UNITS-1:0]   cs_out,
     output logic [LOCAL_ADDR-1:0]  rd_addr,   // local address into selected memory
@@ -34,15 +35,27 @@ module scheduler #(
 
     // ----------------------------------------------------------------
     // Internal beat counter
-    // Advances each write-active cycle (cs=1, rw_=0).
+    // Advances one beat per rising edge of `next`, independent of cs/rw_.
+    // `next` is sampled on clk and edge-detected (next_d) rather than used
+    // as a second clock, so the counter stays in the clk domain.
     // Wraps back to 0 after the last beat (TOTAL_ADDRS-1).
     // ----------------------------------------------------------------
     logic [GLOBAL_ADDR-1:0] beat_cnt;
+    logic                   next_d;
+
+    always_ff @(posedge clk or negedge rst) begin
+        if (!rst)
+            next_d <= 1'b0;
+        else
+            next_d <= next;
+    end
+
+    wire next_rise = next && !next_d;
 
     always_ff @(posedge clk or negedge rst) begin
         if (!rst)
             beat_cnt <= '0;
-        else if (cs && !rw_)
+        else if (next_rise)
             beat_cnt <= (beat_cnt == GLOBAL_ADDR'(TOTAL_ADDRS - 1)) ? '0 : beat_cnt + 1'b1;
     end
 
@@ -77,11 +90,6 @@ module scheduler #(
         end
     endgenerate
 
-    always_ff @(posedge clk) begin
-        if (cs && !rw_ && beat_cnt < 10)
-            $display("[%0t] beat_cnt=%2d mem_idx=%d cs_out=%b rd_addr=%2d data_in=%d",
-                     $time, beat_cnt, mem_idx, cs_out, rd_addr, data_in);
-    end
 
 
 endmodule

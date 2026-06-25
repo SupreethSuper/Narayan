@@ -60,6 +60,13 @@ on the Quartus Prime software download page.
 		(line (pt 0 96)(pt 16 96)(line_width 3))
 	)
 	(port
+		(pt 0 112)
+		(input)
+		(text "next" (rect 0 0 16 12)(font "Arial" ))
+		(text "next" (rect 21 107 37 119)(font "Arial" ))
+		(line (pt 0 112)(pt 16 112)(line_width 1))
+	)
+	(port
 		(pt 360 32)
 		(output)
 		(text "data_out[(DATA_WIDTH-1)..0]" (rect 0 0 130 12)(font "Arial" ))

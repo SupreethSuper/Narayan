@@ -1,47 +1,51 @@
-# do sim_scratchpad.do
+Reading pref.tcl
+
+# 2020.1
+
+# do run_narayan_bdf.do
 # Model Technology ModelSim - Intel FPGA Edition vmap 2020.1 Lib Mapping Utility 2020.02 Feb 28 2020
 # vmap work work 
 # Modifying modelsim.ini
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 21:20:04 on Jun 23,2026
-# vlog -sv -work work "+incdir+." narayan_bdf.v 
-# -- Compiling module narayan_bdf
-# 
-# Top level modules:
-# 	narayan_bdf
-# End time: 21:20:04 on Jun 23,2026, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 21:20:04 on Jun 23,2026
+# Start time: 17:05:17 on Jun 24,2026
 # vlog -sv -work work "+incdir+." scratchpad_memory.sv 
 # -- Compiling package scratchpad_memory_sv_unit
 # -- Compiling module scratchpad_memory
 # 
 # Top level modules:
 # 	scratchpad_memory
-# End time: 21:20:04 on Jun 23,2026, Elapsed time: 0:00:00
+# End time: 17:05:17 on Jun 24,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 21:20:04 on Jun 23,2026
+# Start time: 17:05:17 on Jun 24,2026
 # vlog -sv -work work "+incdir+." scheduler.sv 
 # -- Compiling package scheduler_sv_unit
 # -- Compiling module scheduler
 # 
 # Top level modules:
 # 	scheduler
-# End time: 21:20:04 on Jun 23,2026, Elapsed time: 0:00:00
+# End time: 17:05:17 on Jun 24,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 21:20:04 on Jun 23,2026
+# Start time: 17:05:17 on Jun 24,2026
+# vlog -sv -work work "+incdir+." narayan_bdf.v 
+# -- Compiling module narayan_bdf
+# 
+# Top level modules:
+# 	narayan_bdf
+# End time: 17:05:17 on Jun 24,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 17:05:17 on Jun 24,2026
 # vlog -sv -work work "+incdir+." tb_narayan_bdf.sv 
 # -- Compiling module tb_narayan_bdf
 # 
 # Top level modules:
 # 	tb_narayan_bdf
-# End time: 21:20:04 on Jun 23,2026, Elapsed time: 0:00:00
+# End time: 17:05:17 on Jun 24,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vsim -t 1ps work.tb_narayan_bdf 
-# Start time: 21:20:04 on Jun 23,2026
+# Start time: 17:05:17 on Jun 24,2026
 # Loading sv_std.std
 # Loading work.tb_narayan_bdf
 # Loading work.narayan_bdf
@@ -49,291 +53,229 @@
 # Loading work.scratchpad_memory
 # Loading work.scheduler_sv_unit
 # Loading work.scheduler
-# [15000] beat_cnt= 0 mem_idx=  0 cs_out=0001 rd_addr= 0 data_in=         0
-# [25000] beat_cnt= 1 mem_idx=  0 cs_out=0001 rd_addr= 1 data_in=         0
-# [35000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[ 2] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         7
-# [35000] beat_cnt= 2 mem_idx=  0 cs_out=0001 rd_addr= 2 data_in=         7
-# time =                45000
-# [45000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[ 3] = 1. fsm_state=WRITE_STATE, cs=1, data_in=        13
-# [45000] beat_cnt= 3 mem_idx=  0 cs_out=0001 rd_addr= 3 data_in=        13
-# [55000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[ 4] = 1. fsm_state=WRITE_STATE, cs=1, data_in=        42
-# [55000] beat_cnt= 4 mem_idx=  0 cs_out=0001 rd_addr= 4 data_in=        42
-# [65000] beat_cnt= 5 mem_idx=  1 cs_out=0010 rd_addr= 0 data_in=        99
-# [75000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[ 1] = 1. fsm_state=WRITE_STATE, cs=1, data_in=       128
-# [75000] beat_cnt= 6 mem_idx=  1 cs_out=0010 rd_addr= 1 data_in=       128
-# [85000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[ 2] = 1. fsm_state=WRITE_STATE, cs=1, data_in=       200
-# [85000] beat_cnt= 7 mem_idx=  1 cs_out=0010 rd_addr= 2 data_in=       200
-# [95000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[ 3] = 1. fsm_state=WRITE_STATE, cs=1, data_in=       255
-# [95000] beat_cnt= 8 mem_idx=  1 cs_out=0010 rd_addr= 3 data_in=       255
-# [105000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[ 4] = 1. fsm_state=WRITE_STATE, cs=1, data_in=       512
-# [105000] beat_cnt= 9 mem_idx=  1 cs_out=0010 rd_addr= 4 data_in=       512
-# [125000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[ 1] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      1000
-# [135000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[ 2] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      1234
-# [145000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[ 3] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      1500
-# [155000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[ 4] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      2048
-# [175000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[ 1] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      3141
-# [185000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[ 2] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      3500
-# [195000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[ 3] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      4096
-# [205000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[ 4] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      4500
-# [225000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[ 6] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      5678
-# [235000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[ 7] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      6000
-# [245000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[ 8] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      6789
-# [255000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[ 9] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      7500
-# [275000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[ 6] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      8500
-# [285000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[ 7] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      9000
-# [295000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[ 8] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      9876
-# [305000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[ 9] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     10000
-# [325000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[ 6] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     12345
-# [335000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[ 7] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     13000
-# [345000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[ 8] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     14000
-# [355000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[ 9] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     15000
-# [375000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[ 6] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     16384
-# [385000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[ 7] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     17000
-# [395000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[ 8] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     18000
-# [405000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[ 9] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     19000
-# [425000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[11] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     20000
-# [435000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[12] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     21000
-# [445000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[13] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     22000
-# [455000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[14] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     23000
-# [475000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[11] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     25000
-# [485000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[12] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     25600
-# [495000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[13] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     26000
-# [505000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[14] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     27000
-# [525000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[11] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     29000
-# [535000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[12] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     30000
-# [545000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[13] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     31000
-# [555000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[14] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     32000
-# [575000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[11] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     33333
-# [585000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[12] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     34000
-# [595000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[13] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     35000
-# [605000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[14] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     36000
-# [625000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[16] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     38000
-# [635000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[17] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     39000
-# [645000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[18] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     40000
-# [655000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[19] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     41000
-# [675000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[16] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     43000
-# [685000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[17] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     44000
-# [695000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[18] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     45000
-# [705000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[19] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     46000
-# [725000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[16] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     48000
-# [735000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[17] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     49000
-# [745000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[18] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     50000
-# [755000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[19] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     55000
-# [775000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[16] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     65535
-# [785000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[17] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     70000
-# [795000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[18] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     80000
-# [805000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[19] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     90000
-# [825000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[21] = 1. fsm_state=WRITE_STATE, cs=1, data_in=    131072
-# [835000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[22] = 1. fsm_state=WRITE_STATE, cs=1, data_in=    200000
-# [845000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[23] = 1. fsm_state=WRITE_STATE, cs=1, data_in=    262144
-# [855000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[24] = 1. fsm_state=WRITE_STATE, cs=1, data_in=    300000
-# [875000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[21] = 1. fsm_state=WRITE_STATE, cs=1, data_in=    500000
-# [885000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[22] = 1. fsm_state=WRITE_STATE, cs=1, data_in=    524288
-# [895000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[23] = 1. fsm_state=WRITE_STATE, cs=1, data_in=   1000000
-# [905000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[24] = 1. fsm_state=WRITE_STATE, cs=1, data_in=   1048576
-# [925000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[21] = 1. fsm_state=WRITE_STATE, cs=1, data_in=   4294967
-# [935000 ns] Phase 1 done — 90 values written. beat_cnt = 90.
-# [935000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[22] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [945000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[23] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [955000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[24] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [975000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[21] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [985000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[22] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [995000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[23] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [1005000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[24] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [1015000] beat_cnt= 0 mem_idx=  0 cs_out=0001 rd_addr= 0 data_in=         0
-# [1025000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[ 1] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [1025000] beat_cnt= 1 mem_idx=  0 cs_out=0001 rd_addr= 1 data_in=         0
-# [1035000 ns] beat_cnt wrapped to 0. Starting read scan.
-# starting read now. Time  =               1035000
-# [1035000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[ 2] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [1035000] beat_cnt= 2 mem_idx=  0 cs_out=0001 rd_addr= 2 data_in=         0
-# [1045000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[ 3] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [1055000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[ 3] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [1065000 ns] scan  1 :  mem1=0           mem2=255         mem3=1500        mem4=4096      
-# [1065000] beat_cnt= 3 mem_idx=  0 cs_out=0001 rd_addr= 3 data_in=         0
-# [1085000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[ 4] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [1095000 ns] scan  2 :  mem1=42          mem2=512         mem3=2048        mem4=4500      
-# [1095000] beat_cnt= 4 mem_idx=  0 cs_out=0001 rd_addr= 4 data_in=        42
-# [1115000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[ 0] = 1. fsm_state=WRITE_STATE, cs=1, data_in=        42
-# [1125000 ns] scan  3 :  mem1=0           mem2=0           mem3=0           mem4=0         
-# [1125000] beat_cnt= 5 mem_idx=  1 cs_out=0010 rd_addr= 0 data_in=         0
-# [1145000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[ 1] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [1155000 ns] scan  4 :  mem1=0           mem2=128         mem3=1000        mem4=3141      
-# [1155000] beat_cnt= 6 mem_idx=  1 cs_out=0010 rd_addr= 1 data_in=       128
-# [1175000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[ 2] = 1. fsm_state=WRITE_STATE, cs=1, data_in=       128
-# [1185000 ns] scan  5 :  mem1=0           mem2=200         mem3=1234        mem4=3500      
-# [1185000] beat_cnt= 7 mem_idx=  1 cs_out=0010 rd_addr= 2 data_in=       200
-# [1205000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[ 3] = 1. fsm_state=WRITE_STATE, cs=1, data_in=       200
-# [1215000 ns] scan  6 :  mem1=0           mem2=255         mem3=1500        mem4=4096      
-# [1215000] beat_cnt= 8 mem_idx=  1 cs_out=0010 rd_addr= 3 data_in=       255
-# [1235000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[ 4] = 1. fsm_state=WRITE_STATE, cs=1, data_in=       255
-# [1245000 ns] scan  7 :  mem1=0           mem2=512         mem3=2048        mem4=4500      
-# [1245000] beat_cnt= 9 mem_idx=  1 cs_out=0010 rd_addr= 4 data_in=       512
-# [1265000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[ 0] = 1. fsm_state=WRITE_STATE, cs=1, data_in=       512
-# [1275000 ns] scan  8 :  mem1=0           mem2=42          mem3=0           mem4=0         
-# [1295000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[ 1] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [1305000 ns] scan  9 :  mem1=0           mem2=0           mem3=1000        mem4=3141      
-# [1325000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[ 2] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      1000
-# [1335000 ns] scan 10 :  mem1=0           mem2=128         mem3=1234        mem4=3500      
-# [1355000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[ 3] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      1234
-# [1365000 ns] scan 11 :  mem1=0           mem2=200         mem3=1500        mem4=4096      
-# [1385000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[ 4] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      1500
-# [1395000 ns] scan 12 :  mem1=0           mem2=255         mem3=2048        mem4=4500      
-# [1415000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[ 0] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      2048
-# [1425000 ns] scan 13 :  mem1=0           mem2=42          mem3=512         mem4=0         
-# [1445000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[ 1] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [1455000 ns] scan 14 :  mem1=0           mem2=0           mem3=0           mem4=3141      
-# [1475000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[ 2] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      3141
-# [1485000 ns] scan 15 :  mem1=0           mem2=128         mem3=1000        mem4=3500      
-# [1505000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[ 3] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      3500
-# [1515000 ns] scan 16 :  mem1=0           mem2=200         mem3=1234        mem4=4096      
-# [1535000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[ 4] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      4096
-# [1545000 ns] scan 17 :  mem1=0           mem2=255         mem3=1500        mem4=4500      
-# [1565000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[ 5] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      4500
-# [1575000 ns] scan 18 :  mem1=0           mem2=0           mem3=0           mem4=0         
-# [1595000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[ 6] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [1605000 ns] scan 19 :  mem1=5678        mem2=8500        mem3=12345       mem4=16384     
-# [1625000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[ 7] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      5678
-# [1635000 ns] scan 20 :  mem1=6000        mem2=9000        mem3=13000       mem4=17000     
-# [1655000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[ 8] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      6000
-# [1665000 ns] scan 21 :  mem1=6789        mem2=9876        mem3=14000       mem4=18000     
-# [1685000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[ 9] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      6789
-# [1695000 ns] scan 22 :  mem1=7500        mem2=10000       mem3=15000       mem4=19000     
-# [1715000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[ 5] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      7500
-# [1725000 ns] scan 23 :  mem1=4500        mem2=0           mem3=0           mem4=0         
-# [1745000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[ 6] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [1755000 ns] scan 24 :  mem1=0           mem2=8500        mem3=12345       mem4=16384     
-# [1775000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[ 7] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      8500
-# [1785000 ns] scan 25 :  mem1=5678        mem2=9000        mem3=13000       mem4=17000     
-# [1805000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[ 8] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      9000
-# [1815000 ns] scan 26 :  mem1=6000        mem2=9876        mem3=14000       mem4=18000     
-# [1835000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[ 9] = 1. fsm_state=WRITE_STATE, cs=1, data_in=      9876
-# [1845000 ns] scan 27 :  mem1=6789        mem2=10000       mem3=15000       mem4=19000     
-# [1865000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[ 5] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     10000
-# [1875000 ns] scan 28 :  mem1=4500        mem2=7500        mem3=0           mem4=0         
-# [1895000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[ 6] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [1905000 ns] scan 29 :  mem1=0           mem2=0           mem3=12345       mem4=16384     
-# [1925000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[ 7] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     12345
-# [1935000 ns] scan 30 :  mem1=5678        mem2=8500        mem3=13000       mem4=17000     
-# [1955000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[ 8] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     13000
-# [1965000 ns] scan 31 :  mem1=6000        mem2=9000        mem3=14000       mem4=18000     
-# [1985000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[ 9] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     14000
-# [1995000 ns] scan 32 :  mem1=6789        mem2=9876        mem3=15000       mem4=19000     
-# [2015000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[ 5] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     15000
-# [2025000 ns] scan 33 :  mem1=4500        mem2=7500        mem3=10000       mem4=0         
-# [2045000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[ 6] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [2055000 ns] scan 34 :  mem1=0           mem2=0           mem3=0           mem4=16384     
-# [2075000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[ 7] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     16384
-# [2085000 ns] scan 35 :  mem1=5678        mem2=8500        mem3=12345       mem4=17000     
-# [2105000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[ 8] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     17000
-# [2115000 ns] scan 36 :  mem1=6000        mem2=9000        mem3=13000       mem4=18000     
-# [2135000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[ 9] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     18000
-# [2145000 ns] scan 37 :  mem1=6789        mem2=9876        mem3=14000       mem4=19000     
-# [2165000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[10] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     19000
-# [2175000 ns] scan 38 :  mem1=0           mem2=0           mem3=0           mem4=0         
-# [2195000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[11] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [2205000 ns] scan 39 :  mem1=20000       mem2=25000       mem3=29000       mem4=33333     
-# [2225000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[12] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     20000
-# [2235000 ns] scan 40 :  mem1=21000       mem2=25600       mem3=30000       mem4=34000     
-# [2255000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[13] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     21000
-# [2265000 ns] scan 41 :  mem1=22000       mem2=26000       mem3=31000       mem4=35000     
-# [2285000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[14] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     22000
-# [2295000 ns] scan 42 :  mem1=23000       mem2=27000       mem3=32000       mem4=36000     
-# [2315000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[10] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     23000
-# [2325000 ns] scan 43 :  mem1=19000       mem2=0           mem3=0           mem4=0         
-# [2345000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[11] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [2355000 ns] scan 44 :  mem1=0           mem2=25000       mem3=29000       mem4=33333     
-# [2375000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[12] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     25000
-# [2385000 ns] scan 45 :  mem1=20000       mem2=25600       mem3=30000       mem4=34000     
-# [2405000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[13] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     25600
-# [2415000 ns] scan 46 :  mem1=21000       mem2=26000       mem3=31000       mem4=35000     
-# [2435000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[14] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     26000
-# [2445000 ns] scan 47 :  mem1=22000       mem2=27000       mem3=32000       mem4=36000     
-# [2465000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[10] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     27000
-# [2475000 ns] scan 48 :  mem1=19000       mem2=23000       mem3=0           mem4=0         
-# [2495000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[11] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [2505000 ns] scan 49 :  mem1=0           mem2=0           mem3=29000       mem4=33333     
-# [2525000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[12] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     29000
-# [2535000 ns] scan 50 :  mem1=20000       mem2=25000       mem3=30000       mem4=34000     
-# [2555000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[13] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     30000
-# [2565000 ns] scan 51 :  mem1=21000       mem2=25600       mem3=31000       mem4=35000     
-# [2585000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[14] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     31000
-# [2595000 ns] scan 52 :  mem1=22000       mem2=26000       mem3=32000       mem4=36000     
-# [2615000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[10] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     32000
-# [2625000 ns] scan 53 :  mem1=19000       mem2=23000       mem3=27000       mem4=0         
-# [2645000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[11] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [2655000 ns] scan 54 :  mem1=0           mem2=0           mem3=0           mem4=33333     
-# [2675000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[12] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     33333
-# [2685000 ns] scan 55 :  mem1=20000       mem2=25000       mem3=29000       mem4=34000     
-# [2705000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[13] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     34000
-# [2715000 ns] scan 56 :  mem1=21000       mem2=25600       mem3=30000       mem4=35000     
-# [2735000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[14] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     35000
-# [2745000 ns] scan 57 :  mem1=22000       mem2=26000       mem3=31000       mem4=36000     
-# [2765000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[15] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     36000
-# [2775000 ns] scan 58 :  mem1=0           mem2=0           mem3=0           mem4=0         
-# [2795000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[16] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [2805000 ns] scan 59 :  mem1=38000       mem2=43000       mem3=48000       mem4=65535     
-# [2825000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[17] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     38000
-# [2835000 ns] scan 60 :  mem1=39000       mem2=44000       mem3=49000       mem4=70000     
-# [2855000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[18] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     39000
-# [2865000 ns] scan 61 :  mem1=40000       mem2=45000       mem3=50000       mem4=80000     
-# [2885000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[19] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     40000
-# [2895000 ns] scan 62 :  mem1=41000       mem2=46000       mem3=55000       mem4=90000     
-# [2915000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[15] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     41000
-# [2925000 ns] scan 63 :  mem1=36000       mem2=0           mem3=0           mem4=0         
-# [2945000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[16] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [2955000 ns] scan 64 :  mem1=0           mem2=43000       mem3=48000       mem4=65535     
-# [2975000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[17] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     43000
-# [2985000 ns] scan 65 :  mem1=38000       mem2=44000       mem3=49000       mem4=70000     
-# [3005000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[18] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     44000
-# [3015000 ns] scan 66 :  mem1=39000       mem2=45000       mem3=50000       mem4=80000     
-# [3035000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[19] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     45000
-# [3045000 ns] scan 67 :  mem1=40000       mem2=46000       mem3=55000       mem4=90000     
-# [3065000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[15] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     46000
-# [3075000 ns] scan 68 :  mem1=36000       mem2=41000       mem3=0           mem4=0         
-# [3095000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[16] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [3105000 ns] scan 69 :  mem1=0           mem2=0           mem3=48000       mem4=65535     
-# [3125000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[17] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     48000
-# [3135000 ns] scan 70 :  mem1=38000       mem2=43000       mem3=49000       mem4=70000     
-# [3155000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[18] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     49000
-# [3165000 ns] scan 71 :  mem1=39000       mem2=44000       mem3=50000       mem4=80000     
-# [3185000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[19] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     50000
-# [3195000 ns] scan 72 :  mem1=40000       mem2=45000       mem3=55000       mem4=90000     
-# [3215000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[15] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     55000
-# [3225000 ns] scan 73 :  mem1=36000       mem2=41000       mem3=46000       mem4=0         
-# [3245000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[16] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [3255000 ns] scan 74 :  mem1=0           mem2=0           mem3=0           mem4=65535     
-# [3275000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[17] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     65535
-# [3285000 ns] scan 75 :  mem1=38000       mem2=43000       mem3=48000       mem4=70000     
-# [3305000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[18] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     70000
-# [3315000 ns] scan 76 :  mem1=39000       mem2=44000       mem3=49000       mem4=80000     
-# [3335000] tb_narayan_bdf.dut.b2v_inst3: Setting cell_valid[19] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     80000
-# [3345000 ns] scan 77 :  mem1=40000       mem2=45000       mem3=50000       mem4=90000     
-# [3365000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[20] = 1. fsm_state=WRITE_STATE, cs=1, data_in=     90000
-# [3375000 ns] scan 78 :  mem1=0           mem2=0           mem3=0           mem4=0         
-# [3395000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[21] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [3405000 ns] scan 79 :  mem1=131072      mem2=500000      mem3=4294967     mem4=0         
-# [3425000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[22] = 1. fsm_state=WRITE_STATE, cs=1, data_in=    131072
-# [3435000 ns] scan 80 :  mem1=200000      mem2=524288      mem3=0           mem4=0         
-# [3455000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[23] = 1. fsm_state=WRITE_STATE, cs=1, data_in=    200000
-# [3465000 ns] scan 81 :  mem1=262144      mem2=1000000     mem3=0           mem4=0         
-# [3485000] tb_narayan_bdf.dut.b2v_inst: Setting cell_valid[24] = 1. fsm_state=WRITE_STATE, cs=1, data_in=    262144
-# [3495000 ns] scan 82 :  mem1=300000      mem2=1048576     mem3=0           mem4=0         
-# [3515000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[20] = 1. fsm_state=WRITE_STATE, cs=1, data_in=    300000
-# [3525000 ns] scan 83 :  mem1=90000       mem2=0           mem3=0           mem4=0         
-# [3545000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[21] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [3555000 ns] scan 84 :  mem1=0           mem2=500000      mem3=4294967     mem4=0         
-# [3575000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[22] = 1. fsm_state=WRITE_STATE, cs=1, data_in=    500000
-# [3585000 ns] scan 85 :  mem1=131072      mem2=524288      mem3=0           mem4=0         
-# [3605000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[23] = 1. fsm_state=WRITE_STATE, cs=1, data_in=    524288
-# [3615000 ns] scan 86 :  mem1=200000      mem2=1000000     mem3=0           mem4=0         
-# [3635000] tb_narayan_bdf.dut.b2v_inst1: Setting cell_valid[24] = 1. fsm_state=WRITE_STATE, cs=1, data_in=   1000000
-# [3645000 ns] scan 87 :  mem1=262144      mem2=1048576     mem3=0           mem4=0         
-# [3665000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[20] = 1. fsm_state=WRITE_STATE, cs=1, data_in=   1048576
-# [3675000 ns] scan 88 :  mem1=90000       mem2=300000      mem3=0           mem4=0         
-# [3695000] tb_narayan_bdf.dut.b2v_inst2: Setting cell_valid[21] = 1. fsm_state=WRITE_STATE, cs=1, data_in=         0
-# [3705000 ns] scan 89 :  mem1=0           mem2=0           mem3=4294967     mem4=0         
-# read done. Time =              3705000
-# [3705000 ns] Done.
-# ** Note: $finish    : tb_narayan_bdf.sv(212)
-#    Time: 3705 ns  Iteration: 0  Instance: /tb_narayan_bdf
+# from testbench file
+# time =                    0 data_in=         0, cs = 0, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =                15000 data_in=         1, cs = 1, rw_ = 0, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =                25000 data_in=         1, cs = 1, rw_ = 0, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =                35000 data_in=         1, cs = 1, rw_ = 0, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =                45000 data_in=         2, cs = 1, rw_ = 0, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =                55000 data_in=         2, cs = 1, rw_ = 0, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =                65000 data_in=         2, cs = 1, rw_ = 0, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =                75000 data_in=         3, cs = 1, rw_ = 0, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =                85000 data_in=         3, cs = 1, rw_ = 0, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =                95000 data_in=         3, cs = 1, rw_ = 0, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               105000 data_in=         4, cs = 1, rw_ = 0, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               115000 data_in=         4, cs = 1, rw_ = 0, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               125000 data_in=         4, cs = 1, rw_ = 0, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               135000 data_in=         5, cs = 1, rw_ = 0, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# [145000 ns] write phase done.
+# time =               145000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# [165000 ns] seed read : mem1=0
+# time =               165000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          5, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               175000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          1, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               185000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          1, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               195000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          2, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               205000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          2, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               215000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          3, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               225000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          3, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               235000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          4, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               245000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          4, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               255000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          5, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               265000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          5, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               275000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          1, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               285000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          1, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               295000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          2, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               305000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          2, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               315000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          3, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               325000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          3, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               335000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          4, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               345000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          4, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               355000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          5, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               365000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          5, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               375000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          1, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               385000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          1, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               395000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          2, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               405000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          2, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               415000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          3, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               425000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          3, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               435000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          4, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               445000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          4, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               455000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          5, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               465000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          5, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               475000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               485000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               495000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               505000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               515000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               525000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               535000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               545000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               555000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               565000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               575000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               585000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               595000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               605000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               615000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               625000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               635000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               645000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               655000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               665000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               675000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               685000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               695000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               705000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               715000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               725000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               735000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               745000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               755000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               765000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               775000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               785000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               795000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               805000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               815000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               825000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               835000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               845000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               855000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               865000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               875000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               885000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               895000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               905000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               915000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               925000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               935000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               945000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               955000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               965000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               975000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               985000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =               995000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1005000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1015000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1025000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1035000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1045000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1055000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1065000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1075000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1085000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1095000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1105000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1115000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1125000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1135000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1145000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1155000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1165000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1175000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1185000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1195000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1205000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1215000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1225000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1235000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1245000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1255000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1265000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1275000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1285000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1295000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1305000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1315000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1325000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1335000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1345000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1355000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1365000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1375000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1385000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1395000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1405000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1415000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1425000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1435000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1445000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1455000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1465000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1475000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1485000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1495000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1505000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1515000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1525000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1535000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1545000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1555000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1565000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1575000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1585000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1595000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1605000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1615000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1625000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1635000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1645000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1655000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1665000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1675000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1685000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1695000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1705000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1715000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1725000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1735000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1745000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1755000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1765000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1775000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1785000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1795000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1805000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1815000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1825000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1835000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1845000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1855000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1865000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1875000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1885000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1895000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1905000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1915000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1925000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1935000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1945000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1955000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1965000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1975000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1985000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              1995000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              2005000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              2015000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              2025000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              2035000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              2045000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              2055000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              2065000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          0, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              2075000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          1, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              2085000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          1, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              2095000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          2, mem2 =          0, mem3 =          0, mem4 =          0
+# [2115000 ns] scan 1 : mem1=2 mem2=0 mem3=0 mem4=0
+# time =              2115000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          2, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              2125000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          3, mem2 =          0, mem3 =          0, mem4 =          0
+# [2145000 ns] scan 2 : mem1=3 mem2=0 mem3=0 mem4=0
+# time =              2145000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          3, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              2155000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          4, mem2 =          0, mem3 =          0, mem4 =          0
+# [2175000 ns] scan 3 : mem1=4 mem2=0 mem3=0 mem4=0
+# time =              2175000 data_in=         5, cs = 1, rw_ = 1, next = 1, mem1 =          4, mem2 =          0, mem3 =          0, mem4 =          0
+# time =              2185000 data_in=         5, cs = 1, rw_ = 1, next = 0, mem1 =          5, mem2 =          0, mem3 =          0, mem4 =          0
+# [2205000 ns] scan 4 : mem1=5 mem2=0 mem3=0 mem4=0
+# ** Note: $finish    : tb_narayan_bdf.sv(122)
+#    Time: 2205 ns  Iteration: 0  Instance: /tb_narayan_bdf
+# End time: 17:05:18 on Jun 24,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

@@ -5,17 +5,18 @@
 // DUT: narayan_bdf (scheduler + 4× scratchpad_memory)
 //
 // Structure
-//   Phase 1 – Burst write: 90 values, one per clock cycle.
-//             beat_cnt: 0 → 90 after this phase.
-//   Wrap    – 10 dummy write cycles to roll beat_cnt 90 → 0.
-//   Phase 2 – Read scan: 89 steps, each stepping beat_cnt
-//             by 1 (write pulse) then reading the new address.
-//             Shows the 89 values committed in phase 1 in order.
-//
-// Why 89 not 90?
-//   Cycle 1 of the burst is the RESET→WRITE FSM transition;
-//   the scratchpad doesn't commit a write that cycle, so
-//   val[0] (32'd7) is lost. Values val[1]–val[89] are stored.
+//   Phase 1 – Write 5 values, pulsing `next` between each one to
+//             step the scheduler's beat_cnt to the next address.
+//             val[0] (32'd1) lands on beat 0 during the FSM's
+//             unavoidable RESET_STATE->WRITE_STATE one-cycle latency,
+//             so it's lost; val[1]..val[4] (32'd2..32'd5) commit at
+//             beats 1..4 (all mem1, mem_idx=0).
+//   Wrap    – 96 silent `next` pulses to wrap beat_cnt 4 -> 0
+//             (TOTAL_ADDRS = 100, so (0 - 4 + 100) mod 100 = 96).
+//   Phase 2 – Read scan: 4 steps, each pulsing `next` to advance to
+//             beat 1..4 and reading the value back. `next` is the
+//             sole address-advance signal — rw_ stays 1 throughout,
+//             no toggling needed to step the read address.
 // ============================================================
 
 module tb_narayan_bdf;
@@ -26,6 +27,7 @@ module tb_narayan_bdf;
     logic        rw_;
     logic        rst;
     logic        cs;
+    logic        next;
     logic [31:0] data_in;
 
     wire  [31:0] mem1_out;
@@ -38,6 +40,7 @@ module tb_narayan_bdf;
         .rw_     (rw_),
         .rst     (rst),
         .cs      (cs),
+        .next    (next),
         .data_in (data_in),
         .mem1_out(mem1_out),
         .mem2_out(mem2_out),
@@ -52,8 +55,20 @@ module tb_narayan_bdf;
         rst     = 1'b0;
         cs      = 1'b0;
         rw_     = 1'b1;
+        next    = 1'b0;
         data_in = 32'd0;
+        $display("from testbench file");
     end
+
+    // ----------------------------------------------------------------
+    // Pulses `next` high for one cycle then low for one cycle, so the
+    // scheduler's edge detector (next && !next_d) sees exactly one
+    // rising edge and beat_cnt advances by exactly one beat.
+    // ----------------------------------------------------------------
+    task automatic step_addr();
+        next = 1'b1; #10;
+        next = 1'b0; #10;
+    endtask
 
     // ----------------------------------------------------------------
     // Main sequence
@@ -64,152 +79,52 @@ module tb_narayan_bdf;
         #10;
 
         // ============================================================
-        // Phase 1: Burst write — 90 values
+        // Write 5 values. No dead time between cs/rw_ and the first
+        // data_in — beat_cnt=0 is sacrificed to the FSM's unavoidable
+        // RESET_STATE->WRITE_STATE one-cycle latency, so 32'd1 is lost
+        // and 32'd2..32'd5 land at beat_cnt 1..4 (all mem1, mem_idx=0).
+        // Address advance is via step_addr() (next), not rw_.
         // ============================================================
         cs  = 1'b1;
         rw_ = 1'b0;
 
-        #20;
+        data_in = 32'd1;    #10;
+        step_addr();
+        data_in = 32'd2;    #10;
+        step_addr();
+        data_in = 32'd3;    #10;
+        step_addr();
+        data_in = 32'd4;    #10;
+        step_addr();
+        data_in = 32'd5;    #10;
 
-        data_in = 32'd7;       #10;
-        $display("time = %t", $time);
-        data_in = 32'd13;      #10;
-        data_in = 32'd42;      #10;
-        data_in = 32'd99;      #10;
-        data_in = 32'd128;     #10;
-        data_in = 32'd200;     #10;
-        data_in = 32'd255;     #10;
-        data_in = 32'd512;     #10;
-        data_in = 32'd777;     #10;
-        data_in = 32'd1000;    #10;
-        data_in = 32'd1234;    #10;
-        data_in = 32'd1500;    #10;
-        data_in = 32'd2048;    #10;
-        data_in = 32'd2500;    #10;
-        data_in = 32'd3141;    #10;
-        data_in = 32'd3500;    #10;
-        data_in = 32'd4096;    #10;
-        data_in = 32'd4500;    #10;
-        data_in = 32'd5000;    #10;
-        data_in = 32'd5678;    #10;
-        data_in = 32'd6000;    #10;
-        data_in = 32'd6789;    #10;
-        data_in = 32'd7500;    #10;
-        data_in = 32'd8192;    #10;
-        data_in = 32'd8500;    #10;
-        data_in = 32'd9000;    #10;
-        data_in = 32'd9876;    #10;
-        data_in = 32'd10000;   #10;
-        data_in = 32'd11111;   #10;
-        data_in = 32'd12345;   #10;
-        data_in = 32'd13000;   #10;
-        data_in = 32'd14000;   #10;
-        data_in = 32'd15000;   #10;
-        data_in = 32'd15625;   #10;
-        data_in = 32'd16384;   #10;
-        data_in = 32'd17000;   #10;
-        data_in = 32'd18000;   #10;
-        data_in = 32'd19000;   #10;
-        data_in = 32'd19683;   #10;
-        data_in = 32'd20000;   #10;
-        data_in = 32'd21000;   #10;
-        data_in = 32'd22000;   #10;
-        data_in = 32'd23000;   #10;
-        data_in = 32'd24000;   #10;
-        data_in = 32'd25000;   #10;
-        data_in = 32'd25600;   #10;
-        data_in = 32'd26000;   #10;
-        data_in = 32'd27000;   #10;
-        data_in = 32'd28000;   #10;
-        data_in = 32'd29000;   #10;
-        data_in = 32'd30000;   #10;
-        data_in = 32'd31000;   #10;
-        data_in = 32'd32000;   #10;
-        data_in = 32'd32768;   #10;
-        data_in = 32'd33333;   #10;
-        data_in = 32'd34000;   #10;
-        data_in = 32'd35000;   #10;
-        data_in = 32'd36000;   #10;
-        data_in = 32'd37000;   #10;
-        data_in = 32'd38000;   #10;
-        data_in = 32'd39000;   #10;
-        data_in = 32'd40000;   #10;
-        data_in = 32'd41000;   #10;
-        data_in = 32'd42000;   #10;
-        data_in = 32'd43000;   #10;
-        data_in = 32'd44000;   #10;
-        data_in = 32'd45000;   #10;
-        data_in = 32'd46000;   #10;
-        data_in = 32'd47000;   #10;
-        data_in = 32'd48000;   #10;
-        data_in = 32'd49000;   #10;
-        data_in = 32'd50000;   #10;
-        data_in = 32'd55000;   #10;
-        data_in = 32'd60000;   #10;
-        data_in = 32'd65535;   #10;
-        data_in = 32'd70000;   #10;
-        data_in = 32'd80000;   #10;
-        data_in = 32'd90000;   #10;
-        data_in = 32'd100000;  #10;
-        data_in = 32'd131072;  #10;
-        data_in = 32'd200000;  #10;
-        data_in = 32'd262144;  #10;
-        data_in = 32'd300000;  #10;
-        data_in = 32'd400000;  #10;
-        data_in = 32'd500000;  #10;
-        data_in = 32'd524288;  #10;
-        data_in = 32'd1000000; #10;
-        data_in = 32'd1048576; #10;
-        data_in = 32'd2000000; #10;
-        data_in = 32'd4294967; #10;
-
-        $display("[%0t ns] Phase 1 done — 90 values written. beat_cnt = 90.", $time);
+        $display("[%0t ns] write phase done.", $time);
 
         // ============================================================
-        // Wrap: 10 dummy write cycles to roll beat_cnt 90 → 0
+        // Switch to read mode and wrap beat_cnt 4 -> 0, so the scan
+        // below can step forward through beats 1..4 (mem1=2,3,4,5)
+        // in the same order they were written.
         // ============================================================
-        data_in = 32'd0;
-        repeat(10) #10;
+        rw_ = 1'b1; #10; #10;
+        $display("[%0t ns] seed read : mem1=%0d", $time, mem1_out);
 
-        $display("[%0t ns] beat_cnt wrapped to 0. Starting read scan.", $time);
-
-        // ============================================================
-        // Phase 2: Read scan — 89 steps
-        //
-        // Each step:
-        //   rw_=0  #10   – 1 write cycle: advances beat_cnt by 1.
-        //                  (Odd steps commit a dummy write; even steps
-        //                   are READ→WRITE transitions with no commit.)
-        //   rw_=1  #10   – FSM WRITE→READ transition
-        //          #10   – output registers settle
-        //   $display     – capture result
-        //
-        // beat_cnt 1 → value 32'd13  (mem1_out)
-        // beat_cnt 5 → value 32'd200 (mem2_out)
-        // beat_cnt 10 → value 32'd1234 (mem3_out)  etc.
-        // ============================================================
-        $display("starting read now. Time  =  %t", $time);
-        for (int s = 1; s <= 89; s++) begin
-            // The advance pulse below forces cs=1,rw_=0 for one cycle, which
-            // unavoidably re-enters WRITE_STATE and commits data_in into the
-            // cell beat_cnt is about to leave. Feed back the value already
-            // sitting there so the forced write is a same-value no-op
-            // instead of clobbering it with the stale data_in=0.
-            case (dut.b2v_inst4.mem_idx)
-                0: data_in = mem1_out;
-                1: data_in = mem2_out;
-                2: data_in = mem3_out;
-                3: data_in = mem4_out;
-            endcase
-            rw_ = 1'b0; #10;       // advance beat_cnt to s
-            rw_ = 1'b1; #10; #10;  // read at beat_cnt = s
-            $display("[%0t ns] scan %2d :  mem1=%-10d  mem2=%-10d  mem3=%-10d  mem4=%-10d",
-                      $time, s, mem1_out, mem2_out, mem3_out, mem4_out);
+        for (int w = 0; w < 96; w++) begin
+            step_addr();
         end
-        $display("read done. Time = %t", $time);
 
-        $display("[%0t ns] Done.", $time);
+        for (int s = 1; s <= 4; s++) begin
+            step_addr();           // advance beat_cnt to s
+            #10;                    // let the registered read settle
+            $display("[%0t ns] scan %0d : mem1=%0d mem2=%0d mem3=%0d mem4=%0d",
+                       $time, s, mem1_out, mem2_out, mem3_out, mem4_out);
+        end
+
         $finish;
+
+    end
+
+    initial begin
+        $monitor("time = %t data_in=%d, cs = %d, rw_ = %d, next = %d, mem1 = %d, mem2 = %d, mem3 = %d, mem4 = %d", $time,data_in,cs,rw_,next,mem1_out,mem2_out,mem3_out,mem4_out);
     end
 
     initial begin
