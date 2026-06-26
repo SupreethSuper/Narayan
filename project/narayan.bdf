@@ -22,41 +22,9 @@ on the Quartus Prime software download page.
 (header "graphic" (version "1.4"))
 (pin
 	(input)
-	(rect -232 128 -64 144)
-	(text "INPUT" (rect 125 0 153 9)(font "Arial" (font_size 6)))
-	(text "clk" (rect 5 0 18 11)(font "Arial" ))
-	(pt 168 8)
-	(drawing
-		(line (pt 84 12)(pt 109 12))
-		(line (pt 84 4)(pt 109 4))
-		(line (pt 113 8)(pt 168 8))
-		(line (pt 84 12)(pt 84 4))
-		(line (pt 109 4)(pt 113 8))
-		(line (pt 109 12)(pt 113 8))
-	)
-	(text "VCC" (rect 128 7 148 16)(font "Arial" (font_size 6)))
-)
-(pin
-	(input)
-	(rect -240 240 -72 256)
-	(text "INPUT" (rect 125 0 153 9)(font "Arial" (font_size 6)))
-	(text "rst" (rect 5 0 17 11)(font "Arial" ))
-	(pt 168 8)
-	(drawing
-		(line (pt 84 12)(pt 109 12))
-		(line (pt 84 4)(pt 109 4))
-		(line (pt 113 8)(pt 168 8))
-		(line (pt 84 12)(pt 84 4))
-		(line (pt 109 4)(pt 113 8))
-		(line (pt 109 12)(pt 113 8))
-	)
-	(text "VCC" (rect 128 7 148 16)(font "Arial" (font_size 6)))
-)
-(pin
-	(input)
-	(rect -264 360 -88 376)
+	(rect -576 336 -400 352)
 	(text "INPUT" (rect 133 0 161 9)(font "Arial" (font_size 6)))
-	(text "pin_name1" (rect 9 0 62 11)(font "Arial" ))
+	(text "clk" (rect 9 0 21 11)(font "Arial" ))
 	(pt 176 8)
 	(drawing
 		(line (pt 92 12)(pt 117 12))
@@ -70,38 +38,150 @@ on the Quartus Prime software download page.
 )
 (pin
 	(input)
-	(rect -280 360 -112 376)
-	(text "INPUT" (rect 125 0 153 9)(font "Arial" (font_size 6)))
-	(text "rw_" (rect 5 0 23 11)(font "DejaVu Sans Condensed" ))
-	(pt 168 8)
+	(rect -560 384 -384 400)
+	(text "INPUT" (rect 133 0 161 9)(font "Arial" (font_size 6)))
+	(text "rw_" (rect 9 0 26 11)(font "Arial" ))
+	(pt 176 8)
 	(drawing
-		(line (pt 84 12)(pt 109 12))
-		(line (pt 84 4)(pt 109 4))
-		(line (pt 113 8)(pt 168 8))
-		(line (pt 84 12)(pt 84 4))
-		(line (pt 109 4)(pt 113 8))
-		(line (pt 109 12)(pt 113 8))
+		(line (pt 92 12)(pt 117 12))
+		(line (pt 92 4)(pt 117 4))
+		(line (pt 121 8)(pt 176 8))
+		(line (pt 92 12)(pt 92 4))
+		(line (pt 117 4)(pt 121 8))
+		(line (pt 117 12)(pt 121 8))
 	)
-	(text "VCC" (rect 128 7 148 16)(font "Arial" (font_size 6)))
+	(text "VCC" (rect 136 7 156 16)(font "Arial" (font_size 6)))
 )
 (pin
 	(input)
-	(rect -216 0 -48 16)
-	(text "INPUT" (rect 125 0 153 9)(font "Arial" (font_size 6)))
-	(text "cs" (rect 5 0 16 11)(font "Arial" ))
-	(pt 168 8)
+	(rect -560 464 -384 480)
+	(text "INPUT" (rect 133 0 161 9)(font "Arial" (font_size 6)))
+	(text "rst" (rect 9 0 20 11)(font "Arial" ))
+	(pt 176 8)
 	(drawing
-		(line (pt 84 12)(pt 109 12))
-		(line (pt 84 4)(pt 109 4))
-		(line (pt 113 8)(pt 168 8))
-		(line (pt 84 12)(pt 84 4))
-		(line (pt 109 4)(pt 113 8))
-		(line (pt 109 12)(pt 113 8))
+		(line (pt 92 12)(pt 117 12))
+		(line (pt 92 4)(pt 117 4))
+		(line (pt 121 8)(pt 176 8))
+		(line (pt 92 12)(pt 92 4))
+		(line (pt 117 4)(pt 121 8))
+		(line (pt 117 12)(pt 121 8))
 	)
-	(text "VCC" (rect 128 7 148 16)(font "Arial" (font_size 6)))
+	(text "VCC" (rect 136 7 156 16)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
+	(rect -560 424 -384 440)
+	(text "INPUT" (rect 133 0 161 9)(font "Arial" (font_size 6)))
+	(text "cs" (rect 9 0 19 11)(font "Arial" ))
+	(pt 176 8)
+	(drawing
+		(line (pt 92 12)(pt 117 12))
+		(line (pt 92 4)(pt 117 4))
+		(line (pt 121 8)(pt 176 8))
+		(line (pt 92 12)(pt 92 4))
+		(line (pt 117 4)(pt 121 8))
+		(line (pt 117 12)(pt 121 8))
+	)
+	(text "VCC" (rect 136 7 156 16)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
+	(rect -560 512 -384 528)
+	(text "INPUT" (rect 133 0 161 9)(font "Arial" (font_size 6)))
+	(text "data_in[31..0]" (rect 9 0 73 11)(font "Arial" ))
+	(pt 176 8)
+	(drawing
+		(line (pt 92 12)(pt 117 12))
+		(line (pt 92 4)(pt 117 4))
+		(line (pt 121 8)(pt 176 8))
+		(line (pt 92 12)(pt 92 4))
+		(line (pt 117 4)(pt 121 8))
+		(line (pt 117 12)(pt 121 8))
+	)
+	(text "VCC" (rect 136 7 156 16)(font "Arial" (font_size 6)))
+)
+(pin
+	(input)
+	(rect -552 584 -376 600)
+	(text "INPUT" (rect 133 0 161 9)(font "Arial" (font_size 6)))
+	(text "next" (rect 9 0 29 11)(font "Arial" ))
+	(pt 176 8)
+	(drawing
+		(line (pt 92 12)(pt 117 12))
+		(line (pt 92 4)(pt 117 4))
+		(line (pt 121 8)(pt 176 8))
+		(line (pt 92 12)(pt 92 4))
+		(line (pt 117 4)(pt 121 8))
+		(line (pt 117 12)(pt 121 8))
+	)
+	(text "VCC" (rect 136 7 156 16)(font "Arial" (font_size 6)))
+)
+(pin
+	(output)
+	(rect 1048 112 1224 128)
+	(text "OUTPUT" (rect 1 0 39 9)(font "Arial" (font_size 6)))
+	(text "mem1_out[31..0]" (rect 90 0 170 11)(font "Arial" ))
+	(pt 0 8)
+	(drawing
+		(line (pt 0 8)(pt 52 8))
+		(line (pt 52 4)(pt 78 4))
+		(line (pt 52 12)(pt 78 12))
+		(line (pt 52 12)(pt 52 4))
+		(line (pt 78 4)(pt 82 8))
+		(line (pt 82 8)(pt 78 12))
+		(line (pt 78 12)(pt 82 8))
+	)
+)
+(pin
+	(output)
+	(rect 1040 352 1216 368)
+	(text "OUTPUT" (rect 1 0 39 9)(font "Arial" (font_size 6)))
+	(text "mem2_out[31..0]" (rect 90 0 170 11)(font "Arial" ))
+	(pt 0 8)
+	(drawing
+		(line (pt 0 8)(pt 52 8))
+		(line (pt 52 4)(pt 78 4))
+		(line (pt 52 12)(pt 78 12))
+		(line (pt 52 12)(pt 52 4))
+		(line (pt 78 4)(pt 82 8))
+		(line (pt 82 8)(pt 78 12))
+		(line (pt 78 12)(pt 82 8))
+	)
+)
+(pin
+	(output)
+	(rect 1016 592 1192 608)
+	(text "OUTPUT" (rect 1 0 39 9)(font "Arial" (font_size 6)))
+	(text "mem3_out[31..0]" (rect 90 0 170 11)(font "Arial" ))
+	(pt 0 8)
+	(drawing
+		(line (pt 0 8)(pt 52 8))
+		(line (pt 52 4)(pt 78 4))
+		(line (pt 52 12)(pt 78 12))
+		(line (pt 52 12)(pt 52 4))
+		(line (pt 78 4)(pt 82 8))
+		(line (pt 82 8)(pt 78 12))
+		(line (pt 78 12)(pt 82 8))
+	)
+)
+(pin
+	(output)
+	(rect 1040 824 1216 840)
+	(text "OUTPUT" (rect 1 0 39 9)(font "Arial" (font_size 6)))
+	(text "mem4_out[31..0]" (rect 90 0 170 11)(font "Arial" ))
+	(pt 0 8)
+	(drawing
+		(line (pt 0 8)(pt 52 8))
+		(line (pt 52 4)(pt 78 4))
+		(line (pt 52 12)(pt 78 12))
+		(line (pt 52 12)(pt 52 4))
+		(line (pt 78 4)(pt 82 8))
+		(line (pt 82 8)(pt 78 12))
+		(line (pt 78 12)(pt 82 8))
+	)
 )
 (symbol
-	(rect 208 48 584 192)
+	(rect 600 88 976 232)
 	(text "scratchpad_memory" (rect 5 0 101 11)(font "Arial" ))
 	(text "inst" (rect 8 128 24 139)(font "Arial" ))
 	(port
@@ -150,43 +230,43 @@ on the Quartus Prime software download page.
 		(pt 376 32)
 		(output)
 		(text "data_out[(DATA_WIDTH-1)..0]" (rect 0 0 145 11)(font "Arial" ))
-		(text "data_out[(DATA_WIDTH-1)..0]" (rect 233 27 378 38)(font "Arial" ))
+		(text "data_out[(DATA_WIDTH-1)..0]" (rect 233 27 355 38)(font "Arial" ))
 		(line (pt 376 32)(pt 360 32)(line_width 3))
 	)
 	(parameter
 		"DATA_WIDTH"
-		""
+		"32"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"ROWS"
-		""
+		"5"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"COLS"
-		""
+		"5"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"MAX_INPUT_SCOOP"
-		""
+		"5"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"MEM_ADDRESS"
-		""
+		"5"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
 		(rectangle (rect 16 16 360 128))
 	)
-	(annotation_block (parameter)(rect 584 -32 824 48))
+	(annotation_block (parameter)(rect 976 8 1211 86))
 )
 (symbol
-	(rect 208 240 584 384)
+	(rect 608 328 984 472)
 	(text "scratchpad_memory" (rect 5 0 101 11)(font "Arial" ))
-	(text "inst2" (rect 8 128 31 139)(font "DejaVu Sans Condensed" ))
+	(text "inst1" (rect 8 128 30 139)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -233,43 +313,43 @@ on the Quartus Prime software download page.
 		(pt 376 32)
 		(output)
 		(text "data_out[(DATA_WIDTH-1)..0]" (rect 0 0 145 11)(font "Arial" ))
-		(text "data_out[(DATA_WIDTH-1)..0]" (rect 233 27 378 38)(font "Arial" ))
+		(text "data_out[(DATA_WIDTH-1)..0]" (rect 233 27 355 38)(font "Arial" ))
 		(line (pt 376 32)(pt 360 32)(line_width 3))
 	)
 	(parameter
 		"DATA_WIDTH"
-		""
+		"32"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"ROWS"
-		""
+		"5"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"COLS"
-		""
+		"5"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"MAX_INPUT_SCOOP"
-		""
+		"5"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"MEM_ADDRESS"
-		""
+		"5"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
 		(rectangle (rect 16 16 360 128))
 	)
-	(annotation_block (parameter)(rect 584 160 824 240))
+	(annotation_block (parameter)(rect 984 248 1219 326))
 )
 (symbol
-	(rect 208 432 584 576)
+	(rect 608 568 984 712)
 	(text "scratchpad_memory" (rect 5 0 101 11)(font "Arial" ))
-	(text "inst3" (rect 8 128 31 139)(font "DejaVu Sans Condensed" ))
+	(text "inst2" (rect 8 128 30 139)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -316,43 +396,43 @@ on the Quartus Prime software download page.
 		(pt 376 32)
 		(output)
 		(text "data_out[(DATA_WIDTH-1)..0]" (rect 0 0 145 11)(font "Arial" ))
-		(text "data_out[(DATA_WIDTH-1)..0]" (rect 233 27 378 38)(font "Arial" ))
+		(text "data_out[(DATA_WIDTH-1)..0]" (rect 233 27 355 38)(font "Arial" ))
 		(line (pt 376 32)(pt 360 32)(line_width 3))
 	)
 	(parameter
 		"DATA_WIDTH"
-		""
+		"32"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"ROWS"
-		""
+		"5"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"COLS"
-		""
+		"5"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"MAX_INPUT_SCOOP"
-		""
+		"5"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"MEM_ADDRESS"
-		""
+		"5"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
 		(rectangle (rect 16 16 360 128))
 	)
-	(annotation_block (parameter)(rect 584 352 824 432))
+	(annotation_block (parameter)(rect 984 488 1219 566))
 )
 (symbol
-	(rect 208 608 584 752)
+	(rect 616 800 992 944)
 	(text "scratchpad_memory" (rect 5 0 101 11)(font "Arial" ))
-	(text "inst4" (rect 8 128 31 139)(font "DejaVu Sans Condensed" ))
+	(text "inst3" (rect 8 128 30 139)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -399,43 +479,43 @@ on the Quartus Prime software download page.
 		(pt 376 32)
 		(output)
 		(text "data_out[(DATA_WIDTH-1)..0]" (rect 0 0 145 11)(font "Arial" ))
-		(text "data_out[(DATA_WIDTH-1)..0]" (rect 233 27 378 38)(font "Arial" ))
+		(text "data_out[(DATA_WIDTH-1)..0]" (rect 233 27 355 38)(font "Arial" ))
 		(line (pt 376 32)(pt 360 32)(line_width 3))
 	)
 	(parameter
 		"DATA_WIDTH"
-		""
+		"32"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"ROWS"
-		""
+		"5"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"COLS"
-		""
+		"5"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"MAX_INPUT_SCOOP"
-		""
+		"5"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"MEM_ADDRESS"
-		""
+		"5"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
 		(rectangle (rect 16 16 360 128))
 	)
-	(annotation_block (parameter)(rect 584 528 824 608))
+	(annotation_block (parameter)(rect 992 720 1227 798))
 )
 (symbol
-	(rect 208 784 584 928)
-	(text "scratchpad_memory" (rect 5 0 101 11)(font "Arial" ))
-	(text "inst5" (rect 8 128 31 139)(font "DejaVu Sans Condensed" ))
+	(rect -248 320 112 464)
+	(text "scheduler" (rect 5 0 52 11)(font "Arial" ))
+	(text "inst4" (rect 8 128 30 139)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -467,239 +547,454 @@ on the Quartus Prime software download page.
 	(port
 		(pt 0 96)
 		(input)
-		(text "wr_addr[(MEM_ADDRESS-1)..0]" (rect 0 0 154 11)(font "Arial" ))
-		(text "wr_addr[(MEM_ADDRESS-1)..0]" (rect 21 91 175 102)(font "Arial" ))
+		(text "data_in[(DATA_WIDTH-1)..0]" (rect 0 0 138 11)(font "Arial" ))
+		(text "data_in[(DATA_WIDTH-1)..0]" (rect 21 91 159 102)(font "Arial" ))
 		(line (pt 0 96)(pt 16 96)(line_width 3))
 	)
 	(port
 		(pt 0 112)
 		(input)
-		(text "data_in[(DATA_WIDTH-1)..0]" (rect 0 0 138 11)(font "Arial" ))
-		(text "data_in[(DATA_WIDTH-1)..0]" (rect 21 107 159 118)(font "Arial" ))
-		(line (pt 0 112)(pt 16 112)(line_width 3))
+		(text "next" (rect 0 0 20 11)(font "Arial" ))
+		(text "next" (rect 21 107 41 118)(font "Arial" ))
+		(line (pt 0 112)(pt 16 112))
 	)
 	(port
-		(pt 376 32)
+		(pt 360 32)
 		(output)
 		(text "data_out[(DATA_WIDTH-1)..0]" (rect 0 0 145 11)(font "Arial" ))
-		(text "data_out[(DATA_WIDTH-1)..0]" (rect 233 27 378 38)(font "Arial" ))
-		(line (pt 376 32)(pt 360 32)(line_width 3))
+		(text "data_out[(DATA_WIDTH-1)..0]" (rect 217 27 339 38)(font "Arial" ))
+		(line (pt 360 32)(pt 344 32)(line_width 3))
+	)
+	(port
+		(pt 360 48)
+		(output)
+		(text "cs_out[(NUM_UNITS-1)..0]" (rect 0 0 127 11)(font "Arial" ))
+		(text "cs_out[(NUM_UNITS-1)..0]" (rect 232 43 339 54)(font "Arial" ))
+		(line (pt 360 48)(pt 344 48)(line_width 3))
+	)
+	(port
+		(pt 360 64)
+		(output)
+		(text "rd_addr[(LOCAL_ADDR-1)..0]" (rect 0 0 141 11)(font "Arial" ))
+		(text "rd_addr[(LOCAL_ADDR-1)..0]" (rect 220 59 339 70)(font "Arial" ))
+		(line (pt 360 64)(pt 344 64)(line_width 3))
+	)
+	(port
+		(pt 360 80)
+		(output)
+		(text "rw_out" (rect 0 0 31 11)(font "Arial" ))
+		(text "rw_out" (rect 313 75 339 86)(font "Arial" ))
+		(line (pt 360 80)(pt 344 80))
+	)
+	(port
+		(pt 360 96)
+		(output)
+		(text "rst_out" (rect 0 0 33 11)(font "Arial" ))
+		(text "rst_out" (rect 312 91 339 102)(font "Arial" ))
+		(line (pt 360 96)(pt 344 96))
+	)
+	(port
+		(pt 360 112)
+		(output)
+		(text "clk_out" (rect 0 0 34 11)(font "Arial" ))
+		(text "clk_out" (rect 311 107 339 118)(font "Arial" ))
+		(line (pt 360 112)(pt 344 112))
 	)
 	(parameter
 		"DATA_WIDTH"
-		""
+		"32"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"ROWS"
-		""
+		"5"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"COLS"
-		""
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(parameter
-		"MAX_INPUT_SCOOP"
-		""
+		"5"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
-		"MEM_ADDRESS"
+		"NUM_UNITS"
+		"4"
 		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"LOCAL_ADDR"
+		"5"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"GLOBAL_ADDR"
+		"7"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
-		(rectangle (rect 16 16 360 128))
+		(rectangle (rect 16 16 344 128))
 	)
-	(annotation_block (parameter)(rect 584 704 824 784))
+	(annotation_block (parameter)(rect 112 224 320 315))
 )
 (connector
-	(pt 208 80)
-	(pt -64 80)
+	(pt 600 200)
+	(pt 496 200)
+	(bus)
 )
 (connector
-	(pt 208 272)
-	(pt -64 272)
+	(pt 608 440)
+	(pt 496 440)
+	(bus)
 )
 (connector
-	(pt -64 80)
-	(pt -64 136)
+	(pt 608 680)
+	(pt 496 680)
+	(bus)
 )
 (connector
-	(pt 208 464)
-	(pt -64 464)
+	(pt 496 440)
+	(pt 496 680)
+	(bus)
 )
 (connector
-	(pt -64 136)
-	(pt -64 272)
+	(pt 496 912)
+	(pt 616 912)
+	(bus)
 )
 (connector
-	(pt 208 640)
-	(pt -64 640)
+	(pt 496 680)
+	(pt 496 912)
+	(bus)
 )
 (connector
-	(pt -64 272)
-	(pt -64 464)
+	(pt 600 184)
+	(pt 520 184)
+	(bus)
 )
 (connector
-	(pt 208 816)
-	(pt -64 816)
+	(pt 608 424)
+	(pt 520 424)
+	(bus)
 )
 (connector
-	(pt -64 464)
-	(pt -64 640)
+	(pt 608 664)
+	(pt 520 664)
+	(bus)
 )
 (connector
-	(pt -64 640)
-	(pt -64 816)
+	(pt 616 896)
+	(pt 520 896)
+	(bus)
 )
 (connector
-	(pt 208 128)
-	(pt 120 128)
+	(pt 520 424)
+	(pt 520 664)
+	(bus)
 )
 (connector
-	(pt -72 248)
-	(pt 120 248)
+	(pt 520 664)
+	(pt 520 896)
+	(bus)
 )
 (connector
-	(pt 208 320)
-	(pt 120 320)
+	(pt 496 200)
+	(pt 496 352)
+	(bus)
 )
 (connector
-	(pt 120 128)
-	(pt 120 248)
+	(pt 496 352)
+	(pt 496 440)
+	(bus)
 )
 (connector
-	(pt 208 512)
-	(pt 120 512)
+	(pt 520 184)
+	(pt 520 384)
+	(bus)
 )
 (connector
-	(pt 120 248)
-	(pt 120 320)
+	(pt 520 384)
+	(pt 520 424)
+	(bus)
 )
 (connector
-	(pt 208 688)
-	(pt 120 688)
+	(pt 112 352)
+	(pt 496 352)
+	(bus)
 )
 (connector
-	(pt 120 320)
-	(pt 120 512)
+	(pt 112 384)
+	(pt 520 384)
+	(bus)
 )
 (connector
-	(pt 208 864)
-	(pt 120 864)
+	(pt 600 168)
+	(pt 464 168)
 )
 (connector
-	(pt 120 512)
-	(pt 120 688)
+	(pt 608 648)
+	(pt 464 648)
 )
 (connector
-	(pt 120 688)
-	(pt 120 864)
+	(pt 608 408)
+	(pt 464 408)
 )
 (connector
-	(pt 208 96)
-	(pt 56 96)
+	(pt 464 168)
+	(pt 464 408)
 )
 (connector
-	(pt -88 368)
-	(pt 56 368)
+	(pt 616 880)
+	(pt 464 880)
 )
 (connector
-	(pt 56 288)
-	(pt 208 288)
+	(pt 464 648)
+	(pt 464 880)
 )
 (connector
-	(pt 56 96)
-	(pt 56 288)
+	(pt 112 416)
+	(pt 464 416)
 )
 (connector
-	(pt 208 480)
-	(pt 56 480)
+	(pt 464 408)
+	(pt 464 416)
 )
 (connector
-	(pt 56 288)
-	(pt 56 368)
+	(pt 464 416)
+	(pt 464 648)
 )
 (connector
-	(pt 208 656)
-	(pt 56 656)
+	(pt 600 136)
+	(pt 544 136)
 )
 (connector
-	(pt 56 368)
-	(pt 56 480)
+	(pt 608 376)
+	(pt 544 376)
 )
 (connector
-	(pt 208 832)
-	(pt 56 832)
+	(pt 608 616)
+	(pt 544 616)
 )
 (connector
-	(pt 56 480)
-	(pt 56 656)
+	(pt 544 136)
+	(pt 544 376)
 )
 (connector
-	(pt 56 656)
-	(pt 56 832)
+	(pt 616 848)
+	(pt 544 848)
 )
 (connector
-	(pt 208 112)
-	(pt 168 112)
+	(pt 544 616)
+	(pt 544 848)
 )
 (connector
-	(pt 208 304)
-	(pt 168 304)
+	(pt 112 400)
+	(pt 544 400)
 )
 (connector
-	(pt 208 496)
-	(pt 168 496)
+	(pt 544 376)
+	(pt 544 400)
 )
 (connector
-	(pt 208 672)
-	(pt 168 672)
+	(pt 544 400)
+	(pt 544 616)
 )
 (connector
-	(pt 168 304)
-	(pt 168 496)
+	(pt 600 120)
+	(pt 576 120)
 )
 (connector
-	(pt 208 848)
-	(pt 168 848)
+	(pt 608 360)
+	(pt 576 360)
 )
 (connector
-	(pt 168 496)
-	(pt 168 672)
+	(pt 608 600)
+	(pt 576 600)
 )
 (connector
-	(pt 168 672)
-	(pt 168 848)
+	(pt 576 120)
+	(pt 576 360)
 )
 (connector
-	(pt -48 8)
-	(pt 168 8)
+	(pt 616 832)
+	(pt 576 832)
 )
 (connector
-	(pt 168 8)
-	(pt 168 112)
+	(pt 576 600)
+	(pt 576 832)
 )
 (connector
-	(pt 168 112)
-	(pt 168 304)
+	(pt 112 432)
+	(pt 576 432)
 )
-(junction (pt -64 136))
-(junction (pt -64 272))
-(junction (pt -64 464))
-(junction (pt -64 640))
-(junction (pt 120 248))
-(junction (pt 120 320))
-(junction (pt 120 512))
-(junction (pt 120 688))
-(junction (pt 56 288))
-(junction (pt 56 368))
-(junction (pt 56 480))
-(junction (pt 56 656))
-(junction (pt 168 304))
-(junction (pt 168 496))
-(junction (pt 168 672))
-(junction (pt 168 112))
+(connector
+	(pt 576 360)
+	(pt 576 432)
+)
+(connector
+	(pt 576 432)
+	(pt 576 600)
+)
+(connector
+	(pt 384 152)
+	(pt 384 368)
+	(bus)
+)
+(connector
+	(pt 384 368)
+	(pt 384 392)
+	(bus)
+)
+(connector
+	(pt 384 392)
+	(pt 384 632)
+	(bus)
+)
+(connector
+	(pt 384 632)
+	(pt 384 864)
+	(bus)
+)
+(connector
+	(pt -248 400)
+	(pt -296 400)
+)
+(connector
+	(pt -296 400)
+	(pt -296 472)
+)
+(connector
+	(pt 976 120)
+	(pt 1048 120)
+	(bus)
+)
+(connector
+	(pt 984 360)
+	(pt 1040 360)
+	(bus)
+)
+(connector
+	(pt 984 600)
+	(pt 1016 600)
+	(bus)
+)
+(connector
+	(pt 992 832)
+	(pt 1040 832)
+	(bus)
+)
+(connector
+	(text "cs_out[0]" (rect 394 136 438 147)(font "DejaVu Sans Condensed" ))
+	(pt 600 152)
+	(pt 384 152)
+)
+(connector
+	(text "cs_out[1]" (rect 394 376 438 387)(font "DejaVu Sans Condensed" ))
+	(pt 608 392)
+	(pt 384 392)
+)
+(connector
+	(text "cs_out[2]" (rect 394 616 438 627)(font "DejaVu Sans Condensed" ))
+	(pt 608 632)
+	(pt 384 632)
+)
+(connector
+	(text "cs_out[3]" (rect 394 848 438 859)(font "DejaVu Sans Condensed" ))
+	(pt 616 864)
+	(pt 384 864)
+)
+(connector
+	(text "cs_out[3..0]" (rect 122 352 178 363)(font "DejaVu Sans Condensed" ))
+	(pt 112 368)
+	(pt 384 368)
+	(bus)
+)
+(connector
+	(pt -376 520)
+	(pt -376 512)
+	(bus)
+)
+(connector
+	(pt -248 416)
+	(pt -280 416)
+	(bus)
+)
+(connector
+	(pt -280 416)
+	(pt -280 512)
+	(bus)
+)
+(connector
+	(pt -376 512)
+	(pt -280 512)
+	(bus)
+)
+(connector
+	(pt -248 432)
+	(pt -264 432)
+)
+(connector
+	(pt -264 432)
+	(pt -264 592)
+)
+(connector
+	(pt -376 592)
+	(pt -264 592)
+)
+(connector
+	(pt -384 472)
+	(pt -296 472)
+)
+(connector
+	(pt -384 520)
+	(pt -376 520)
+	(bus)
+)
+(connector
+	(pt -400 344)
+	(pt -248 344)
+)
+(connector
+	(pt -248 344)
+	(pt -248 352)
+)
+(connector
+	(pt -384 392)
+	(pt -336 392)
+)
+(connector
+	(pt -336 392)
+	(pt -336 368)
+)
+(connector
+	(pt -248 368)
+	(pt -336 368)
+)
+(connector
+	(pt -384 432)
+	(pt -328 432)
+)
+(connector
+	(pt -248 384)
+	(pt -328 384)
+)
+(connector
+	(pt -328 432)
+	(pt -328 384)
+)
+(junction (pt 496 440))
+(junction (pt 496 680))
+(junction (pt 496 352))
+(junction (pt 520 424))
+(junction (pt 520 664))
+(junction (pt 520 384))
+(junction (pt 464 408))
+(junction (pt 464 648))
+(junction (pt 464 416))
+(junction (pt 544 376))
+(junction (pt 544 616))
+(junction (pt 544 400))
+(junction (pt 576 360))
+(junction (pt 576 600))
+(junction (pt 576 432))
+(junction (pt 384 368))
+(junction (pt 384 392))
+(junction (pt 384 632))
