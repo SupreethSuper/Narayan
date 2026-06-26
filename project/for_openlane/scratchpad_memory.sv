@@ -64,16 +64,16 @@ module scratchpad_memory #(
         else begin
             case (fsm_state)
                 RESET_STATE: begin
-<<<<<<< HEAD
+
                     if (!rw_)
                         next_fsm_state = WRITE_STATE;
                     else
                         next_fsm_state = RESET_STATE;
                     // next_fsm_state = RESET_STATE || WRITE_STATE;
-=======
+
                     if (!rw_) next_fsm_state = WRITE_STATE;
                     else      next_fsm_state = READ_STATE;
->>>>>>> main
+
                 end
                 READ_STATE: begin
                     if (rw_)  next_fsm_state = READ_STATE;
@@ -88,27 +88,19 @@ module scratchpad_memory #(
         end
     end
 
-    // Combinational write-commit condition, driven directly off this cycle's
-    // cs/rw_ rather than the registered fsm_state. Using fsm_state here would
-    // lag the commit by one cycle (fsm_state only reflects WRITE_STATE on the
-    // cycle AFTER cs/rw_ first indicate a write), dropping the first address
-    // of every write turn.
-    logic do_write;
-    assign do_write = cs && !rw_ && (fsm_state != RESET_STATE);
-
     // Valid flags: async-cleared as a single packed register (no loop, small
     // reset fan-out), then set one bit per committed write. Out-of-range
     // addresses (row >= ROWS) target a non-existent element and are ignored.
     always_ff @(posedge clk or negedge rst) begin
         if (!rst)
             cell_valid <= { {(ROWS*COLS){1'b0}} };
-        else if (do_write)
+        else if ((fsm_state == WRITE_STATE) && cs)
             cell_valid[wr_addr] <= 1'b1;
     end
 
     // Data write port (no reset on the data array itself).
     always_ff @(posedge clk) begin
-        if (do_write)
+        if ((fsm_state == WRITE_STATE) && cs)
             memory[row][col] <= data_in;
     end
 
