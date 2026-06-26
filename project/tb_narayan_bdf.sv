@@ -87,37 +87,73 @@ module tb_narayan_bdf;
         // ============================================================
         cs  = 1'b1;
         rw_ = 1'b0;
+       wait(cs == 1'b1 && rw_ == 1'b0);
 
-        data_in = 32'd1;    #10;
+        data_in = 32'd1;    
+        #10;
         step_addr();
-        data_in = 32'd2;    #10;
-        step_addr();
-        data_in = 32'd3;    #10;
-        step_addr();
-        data_in = 32'd4;    #10;
-        step_addr();
-        data_in = 32'd5;    #10;
 
-        $display("[%0t ns] write phase done.", $time);
+        data_in = 32'd2;    
+        #10;
+        step_addr();
+        
+        data_in = 32'd3;    
+        #10;
+        step_addr();
+        
+        data_in = 32'd4;    
+        #10;
+        step_addr();
+
+        
+        data_in = 32'd5;    
+        #10;
+        
+
+        step_addr();
+        data_in = 32'd6;    
+        #10;
+
+        step_addr();
+        data_in = 32'd7;    
+        #10;
+        step_addr();
+        data_in = 32'd8;    
+        #10;
+
+        step_addr();
+        data_in = 32'd9;    
+        #10;
+        
+        step_addr();
+        data_in = 32'd10;    
+        #10;
+
+
+
+        // $display("[%0t ns] write phase done.", $time);
 
         // ============================================================
         // Switch to read mode and wrap beat_cnt 4 -> 0, so the scan
         // below can step forward through beats 1..4 (mem1=2,3,4,5)
         // in the same order they were written.
         // ============================================================
-        rw_ = 1'b1; #10; #10;
-        $display("[%0t ns] seed read : mem1=%0d", $time, mem1_out);
-
-        for (int w = 0; w < 96; w++) begin
+        rw_ = 1'b1;
+        wait(rw_);
+        
+       // repeat (1) @(posedge clk);
+        // $display("[%0t ns] seed read : mem1=%0d", $time, mem1_out);
+        
+        for (int w = 0; w < 10; w++) begin
             step_addr();
         end
 
-        for (int s = 1; s <= 4; s++) begin
-            step_addr();           // advance beat_cnt to s
-            #10;                    // let the registered read settle
-            $display("[%0t ns] scan %0d : mem1=%0d mem2=%0d mem3=%0d mem4=%0d",
-                       $time, s, mem1_out, mem2_out, mem3_out, mem4_out);
-        end
+        // for (int s = 1; s <= 4; s++) begin
+        //     step_addr();           // advance beat_cnt to s
+        //     #10;                    // let the registered read settle
+        //     $display("[%0t ns] scan %0d : mem1=%0d mem2=%0d mem3=%0d mem4=%0d",
+        //                $time, s, mem1_out, mem2_out, mem3_out, mem4_out);
+        // end
 
         $finish;
 
