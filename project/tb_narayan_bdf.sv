@@ -65,10 +65,12 @@ module tb_narayan_bdf;
     // scheduler's edge detector (next && !next_d) sees exactly one
     // rising edge and beat_cnt advances by exactly one beat.
     // ----------------------------------------------------------------
-    task automatic step_addr();
-        next = 1'b1; #10;
-        next = 1'b0; #10;
-    endtask
+task automatic step_addr();
+    next = 1'b1;
+    @(posedge clk);
+    next = 1'b0;
+    @(posedge clk);
+endtask
 
     // ----------------------------------------------------------------
     // Main sequence
@@ -76,7 +78,7 @@ module tb_narayan_bdf;
     always @(posedge clk) begin
 
         rst = 1'b1;   // deassert reset
-        #10;
+        @(posedge clk)
 
         // ============================================================
         // Write 5 values. No dead time between cs/rw_ and the first
@@ -90,44 +92,72 @@ module tb_narayan_bdf;
        wait(cs == 1'b1 && rw_ == 1'b0);
 
         data_in = 32'd1;    
-        #10;
+        @(posedge clk)
         step_addr();
 
         data_in = 32'd2;    
-        #10;
+        @(posedge clk)
         step_addr();
         
         data_in = 32'd3;    
-        #10;
+        @(posedge clk)
         step_addr();
         
         data_in = 32'd4;    
-        #10;
+        @(posedge clk)
         step_addr();
 
         
         data_in = 32'd5;    
-        #10;
+        @(posedge clk)
         
 
         step_addr();
         data_in = 32'd6;    
-        #10;
+        @(posedge clk)
 
         step_addr();
         data_in = 32'd7;    
-        #10;
+        @(posedge clk)
         step_addr();
         data_in = 32'd8;    
-        #10;
+        @(posedge clk)
 
         step_addr();
         data_in = 32'd9;    
-        #10;
+        @(posedge clk)
         
         step_addr();
         data_in = 32'd10;    
-        #10;
+        @(posedge clk)
+        step_addr();
+
+        data_in = 32'd10;    
+        @(posedge clk)
+        step_addr();
+
+        data_in = 32'd10;    
+        @(posedge clk)
+        step_addr();
+
+        data_in = 32'd10;    
+        @(posedge clk)
+        step_addr();
+
+        data_in = 32'd10;    
+        @(posedge clk)
+        step_addr();
+        
+        // data_in = 32'd10;    
+        @(posedge clk)
+        // $display("\n\n\n this is the holy data\n\n\n");
+        // step_addr();
+        // data_in = 32'h0000_000a;    
+        // @(posedge clk)
+        // $display("\n\n\n%h this is the holy data that has been entered \n\n\n", data_in);
+
+
+
 
 
 
@@ -144,13 +174,13 @@ module tb_narayan_bdf;
        // repeat (1) @(posedge clk);
         // $display("[%0t ns] seed read : mem1=%0d", $time, mem1_out);
         
-        for (int w = 0; w < 10; w++) begin
+        for (int w = 0; w < 15; w++) begin
             step_addr();
         end
 
         // for (int s = 1; s <= 4; s++) begin
         //     step_addr();           // advance beat_cnt to s
-        //     #10;                    // let the registered read settle
+        //     @(posedge clk)                    // let the registered read settle
         //     $display("[%0t ns] scan %0d : mem1=%0d mem2=%0d mem3=%0d mem4=%0d",
         //                $time, s, mem1_out, mem2_out, mem3_out, mem4_out);
         // end
@@ -160,7 +190,7 @@ module tb_narayan_bdf;
     end
 
     initial begin
-        $monitor("time = %t data_in=%d, cs = %d, rw_ = %d, next = %d, mem1 = %d, mem2 = %d, mem3 = %d, mem4 = %d", $time,data_in,cs,rw_,next,mem1_out,mem2_out,mem3_out,mem4_out);
+        $monitor("time = %t data_in=%d, cs = %4b, rw_ = %d, next = %d, mem1 = %d, mem2 = %d, mem3 = %d, mem4 = %d", $time,data_in,cs,rw_,next,mem1_out,mem2_out,mem3_out,mem4_out);
     end
 
     initial begin

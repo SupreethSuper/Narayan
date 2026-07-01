@@ -54,9 +54,9 @@ module scheduler #(
 
     always_ff @(posedge clk or negedge rst) begin
         if (!rst)
-            beat_cnt <= '0;
+            beat_cnt <= { {(GLOBAL_ADDR){1'b0}} };
         else if (next_rise)
-            beat_cnt <= (beat_cnt == GLOBAL_ADDR'(TOTAL_ADDRS - 1)) ? '0 : beat_cnt + 1'b1;
+            beat_cnt <= (beat_cnt == (TOTAL_ADDRS - 1)) ? { {(GLOBAL_ADDR){1'b0}} } : beat_cnt + 1'b1;
     end
 
     // ----------------------------------------------------------------
@@ -79,14 +79,14 @@ module scheduler #(
         col_in_row   = pos_in_super % COLS;
     end
 
-    assign rd_addr = LOCAL_ADDR'(super_row * COLS + col_in_row);
+    assign rd_addr = super_row * COLS + col_in_row;
 
     genvar i;
     generate
         for (i = 0; i < NUM_UNITS; i++) begin : cs_gen
             // Write: only the addressed unit gets cs_out=1 (sequential load)
             // Read : all units get cs_out=1 (parallel readout)
-            assign cs_out[i] = cs && (!rw_ ? (mem_idx == GLOBAL_ADDR'(i)) : 1'b1);
+            assign cs_out[i] = cs && (!rw_ ? (mem_idx == i) : 1'b1);
         end
     endgenerate
 
